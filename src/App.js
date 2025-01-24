@@ -32,10 +32,8 @@ const App = () => {
         <Route path="/socialmedia" element={<  SocialMedia />} />
         <Route path="/MissionVision" element={<  MissionVision />} />
         <Route path="/VehicleAnimation" element={<  VehicleAnimation />} />
-
       </Routes>
       <Footer />
-
     </div>
   )
 };

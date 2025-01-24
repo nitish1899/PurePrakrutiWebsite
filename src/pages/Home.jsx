@@ -215,7 +215,6 @@ export const Home = () => {
 
       </section>
 
-
       {/* FAQ Section */}
       <section className="py-16 bg-white ml-4">
         <div className="container mx-auto px-6">
@@ -224,28 +223,36 @@ export const Home = () => {
             <div>
               <h3 className="text-xl font-semibold text-green-700">What is Pure Prakruti?</h3>
               <p className="mt-2 text-gray-600">
-                Pure Prakruti is a platform that helps businesses in the logistics industry reduce their carbon emissions
-                and comply with global environmental standards.
+                Pure Prakruti is a cutting-edge platform designed to assist businesses in the logistics industry with reducing their carbon footprint. By leveraging advanced technologies, we help companies track emissions, improve sustainability practices, and ensure compliance with global environmental standards such as the EU's Carbon Border Adjustment Mechanism (CBAM).
               </p>
             </div>
             <div>
               <h3 className="text-xl font-semibold text-green-700">How does emission tracking work?</h3>
               <p className="mt-2 text-gray-600">
-                Our platform uses advanced algorithms and real-time data to monitor and measure your carbon emissions,
-                providing actionable insights to reduce them effectively.
+                Our platform utilizes a combination of real-time data, machine learning algorithms, and sophisticated analytics to accurately track carbon emissions throughout the logistics supply chain. We provide businesses with actionable insights that can help them make informed decisions to minimize their environmental impact.
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-green-700">Is the platform suitable for small businesses?</h3>
+              <h3 className="text-xl font-semibold text-green-700">Can Pure Prakruti help my business comply with environmental regulations?</h3>
               <p className="mt-2 text-gray-600">
-                Absolutely! Pure Prakruti is designed to cater to businesses of all sizes, offering scalable solutions
-                tailored to your needs.
+                Yes! Pure Prakruti is designed to support businesses in achieving compliance with key environmental regulations. Whether it’s reducing emissions to meet national or international standards or preparing for upcoming regulations like CBAM, our platform equips businesses with the tools to stay ahead of environmental policies and regulations.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-green-700">Is Pure Prakruti suitable for small and medium-sized enterprises (SMEs)?</h3>
+              <p className="mt-2 text-gray-600">
+                Absolutely! Pure Prakruti offers flexible solutions that can be scaled to fit the needs of businesses of all sizes. Whether you are a small local operation or a large enterprise, our platform provides tools that are both easy to implement and cost-effective, making sustainability accessible to everyone.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-green-700">What support does Pure Prakruti provide to users?</h3>
+              <p className="mt-2 text-gray-600">
+                We offer comprehensive support to all of our users, including setup assistance, user training, and ongoing customer service. Our team is dedicated to ensuring that your experience with Pure Prakruti is seamless and that you are empowered to make data-driven decisions that positively impact your business and the environment.
               </p>
             </div>
           </div>
         </div>
       </section>
-
 
       {/* Testimonials Section */}
       <section className="py-16 bg-white ml-4">
@@ -254,19 +261,19 @@ export const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
             <div className="bg-green-100 p-6 rounded-lg shadow-md">
               <p className="text-gray-700">
-                "Pure Prakruti transformed our logistics operations. We've cut emissions by 30% and are fully CBAM compliant!"
+                "Pure Prakruti has completely transformed how we approach sustainability. Thanks to their platform, we've been able to reduce our carbon emissions by over 30% and are now fully aligned with global standards. This has made a huge impact on both our operational efficiency and environmental responsibility."
               </p>
               <p className="mt-4 font-bold text-green-700">- Alex M., Logistics Manager</p>
             </div>
             <div className="bg-green-100 p-6 rounded-lg shadow-md">
               <p className="text-gray-700">
-                "An indispensable tool for businesses aiming to prioritize sustainability in logistics."
+                "As a company committed to sustainability, Pure Prakruti is an indispensable tool for us. Their user-friendly platform has made it so much easier to track emissions and ensure we’re meeting both current and future regulatory requirements. It’s a must-have for any logistics business serious about reducing its carbon footprint."
               </p>
               <p className="mt-4 font-bold text-green-700">- Priya K., Operations Head</p>
             </div>
             <div className="bg-green-100 p-6 rounded-lg shadow-md">
               <p className="text-gray-700">
-                "The dashboard and analytics are incredibly intuitive. Pure Prakruti is a game-changer for logistics sustainability."
+                "The analytics dashboard provided by Pure Prakruti is incredibly intuitive. It allows us to track and visualize our emissions in real-time, which has been a game-changer for our sustainability initiatives. Thanks to their insights, we’ve been able to set realistic goals and make meaningful improvements."
               </p>
               <p className="mt-4 font-bold text-green-700">- John D., CEO</p>
             </div>
@@ -274,21 +281,19 @@ export const Home = () => {
         </div>
       </section>
 
-
-
-
       {/* Call-to-Action Section */}
       <section className="bg-green-50 text-green-700 py-16 ml-4">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold">Join Us on the Path to Sustainability</h2>
+          <h2 className="text-3xl font-bold">Take the First Step Towards a Greener Future</h2>
           <p className="mt-4 text-lg">
-            Get started with Pure Prakruti and take the first step toward a greener future.
+            Join the growing number of businesses committed to reducing their carbon emissions and embracing sustainability in logistics. Let Pure Prakruti help you track, reduce, and meet global environmental standards. Together, we can create a sustainable future.
           </p>
           <button className="mt-6 bg-white text-green-700 py-3 px-8 rounded-lg hover:bg-gray-200">
-            Contact Us
+            Get Started Now
           </button>
         </div>
       </section>
+
     </div>
   );
 };
