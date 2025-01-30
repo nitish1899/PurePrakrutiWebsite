@@ -1,6 +1,6 @@
 
 import React from 'react';
-import pure from '../resource/mobile.png';
+
 
 export const AboutUs = () => {
   return (
@@ -20,170 +20,149 @@ export const AboutUs = () => {
         </div>
       </header>
 
+      {/* About Us Section */}
       <section className="py-16 bg-white">
-  <div className="container mx-auto px-6">
-    {/* Title and Introduction */}
-    <h2 className="text-4xl font-bold text-center text-green-700">About Pure Prakruti</h2>
-    <p className="mt-6 text-lg text-gray-700 text-center">
-      Pure Prakruti is on a mission to reshape the logistics industry by making it sustainable and environmentally responsible. 
-      We provide cutting-edge tools and data-driven solutions to empower businesses to reduce their carbon footprint and 
-      meet global sustainability standards.
-    </p>
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-green-700">About Pure Prakruti</h2>
+          <p className="mt-6 text-lg text-gray-700 text-center ml-4">
+            Pure Prakruti is your partner in building a sustainable future. Focused on the road logistics industry,
+            responsible for 27% of global emissions, we offer tools and insights to help businesses reduce their carbon footprint.
+            Together, we can make a meaningful impact on climate change.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+            {/* Mission Section */}
+            <div className="bg-green-100 p-6 rounded-lg shadow-md transform transition-all hover:scale-105 hover:shadow-xl">
+              <h3 className="text-xl font-semibold text-green-700">Mission</h3>
+              <p className="mt-2 text-gray-600">
+                Our mission is to offer innovative technologies and services that allow logistics companies to track, analyze, and reduce their carbon emissions. We are dedicated to empowering businesses to adopt more sustainable practices and drive the shift toward a zero-carbon future.
+              </p>
+            </div>
 
-    {/* Mission, Vision, and Values */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-      {/* Mission */}
-      <div className="bg-green-100 p-6 rounded-lg shadow-md">
-        <h3 className="text-xl font-semibold text-green-700">Our Mission</h3>
-        <p className="mt-4 text-gray-600">
-          To transform the logistics industry by providing businesses with sustainable solutions that reduce emissions and 
-          align with environmental regulations.
-        </p>
-      </div>
-      {/* Vision */}
-      <div className="bg-green-100 p-6 rounded-lg shadow-md">
-        <h3 className="text-xl font-semibold text-green-700">Our Vision</h3>
-        <p className="mt-4 text-gray-600">
-          To lead the way in carbon reduction for logistics, creating a greener, more sustainable world for future generations.
-        </p>
-      </div>
-      {/* Values */}
-      <div className="bg-green-100 p-6 rounded-lg shadow-md">
-        <h3 className="text-xl font-semibold text-green-700">Our Values</h3>
-        <ul className="mt-4 list-disc pl-4 text-gray-600">
-          <li>Sustainability: Making every action environmentally conscious.</li>
-          <li>Innovation: Leveraging technology for impactful change.</li>
-          <li>Integrity: Transparent and honest in all our dealings.</li>
-          <li>Collaboration: Building partnerships to achieve common goals.</li>
-        </ul>
-      </div>
-    </div>
+            {/* Vision Section */}
+            <div className="bg-green-100 p-6 rounded-lg shadow-md transform transition-all hover:scale-105 hover:shadow-xl">
+              <h3 className="text-xl font-semibold text-green-700">Vision</h3>
+              <p className="mt-2 text-gray-600">
+              With the EU's Carbon Border Adjustment Mechanism (CBAM) approaching, we're focused on cutting down road logistics emissions, which account for approx. 27% of the carbon footprint. Through Pure Prakruti, we aim to educate, create awareness, and promote greener solutions to protect both our industry and the planet.
+              </p>
+            </div>
 
-    {/* Why Choose Us */}
-    <div className="mt-16 text-center">
-      <h3 className="text-3xl font-bold text-green-700">Why Choose Pure Prakruti?</h3>
-      <p className="mt-6 text-lg text-gray-700">
-        Pure Prakruti understands the complexities of the logistics industry. Our solutions are tailored to help businesses 
-        reduce emissions, optimize operations, and achieve compliance with global environmental standards.
-      </p>
-    </div>
-    <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div className="bg-green-50 p-6 rounded-lg shadow-md">
-        <h4 className="text-lg font-semibold text-green-700">Emission Tracking</h4>
-        <p className="mt-2 text-gray-600">
-          Monitor and measure carbon emissions in real-time, enabling actionable insights for reduction.
-        </p>
-      </div>
-      <div className="bg-green-50 p-6 rounded-lg shadow-md">
-        <h4 className="text-lg font-semibold text-green-700">Custom Solutions</h4>
-        <p className="mt-2 text-gray-600">
-          Tailored recommendations to optimize logistics operations and reduce environmental impact.
-        </p>
-      </div>
-      <div className="bg-green-50 p-6 rounded-lg shadow-md">
-        <h4 className="text-lg font-semibold text-green-700">CBAM Compliance</h4>
-        <p className="mt-2 text-gray-600">
-          Ensure compliance with the EU Carbon Border Adjustment Mechanism and other global standards.
-        </p>
-      </div>
-      <div className="bg-green-50 p-6 rounded-lg shadow-md">
+            {/* Values Section */}
+            <div className="bg-green-100 p-6 rounded-lg shadow-md transform transition-all hover:scale-105 hover:shadow-xl">
+              <h3 className="text-xl font-semibold text-green-700">Values</h3>
+              <p className="mt-2 text-gray-600">
+                We believe in integrity, innovation, and collaboration. Our core values drive us to provide transparent and impactful solutions that not only meet our client's needs but also contribute to a sustainable planet.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+            {/* Features Section */}
+            <section className="py-16 bg-green-50 ml-4">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-green-700">Key Features</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+            <div className="bg-white shadow-md rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-green-700">Emission Tracking</h3>
+              <p className="mt-2 text-gray-600">
+                Measure and monitor your carbon emissions in real-time, giving you actionable insights to reduce them.
+              </p>
+            </div>
+            <div className="bg-white shadow-md rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-green-700">Custom Solutions</h3>
+              <p className="mt-2 text-gray-600">
+                Tailored recommendations to optimize your logistics operations and reduce your environmental impact.
+              </p>
+            </div>
+            <div className="bg-white shadow-md rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-green-700">CBAM Compliance</h3>
+              <p className="mt-2 text-gray-600">
+                Ensure compliance with the EU Carbon Border Adjustment Mechanism and other global regulations.
+              </p>
+            </div>
+            <div className="bg-white shadow-md rounded-lg p-6">
               <h3 className="text-xl font-semibold text-green-700">Environmental Awareness</h3>
               <p className="mt-2 text-gray-600">
                 Educational resources to help your team understand the environmental impact of road logistics.
               </p>
             </div>
-      <div className="bg-green-50 p-6 rounded-lg shadow-md">
-        <h4 className="text-xl font-semibold text-green-700">Educational Resources</h4>
-        <p className="mt-2 text-gray-600">
-          Equip your team with knowledge about sustainable practices and their impact.
-        </p>
-      </div>
-      <div className="bg-green-50 p-6 rounded-lg shadow-md">
-        <h4 className="text-lg font-semibold text-green-700">Advanced Analytics</h4>
-        <p className="mt-2 text-gray-600">
-          Use data-driven insights to identify inefficiencies and maximize sustainability efforts.
-        </p>
-      </div>
-    </div>
-
-    {/* Our Goals */}
-    <div className="mt-16">
-      <h3 className="text-3xl font-bold text-center text-green-700">Our Goals</h3>
-      <p className="mt-6 text-lg text-gray-700 text-center">
-        Pure Prakruti is committed to:
-      </p>
-      <ul className="mt-8 space-y-4 list-disc pl-8 text-gray-600">
-        <li>
-          Reducing carbon emissions in the road logistics industry by 30% by 2030.
-        </li>
-        <li>
-          Helping businesses achieve compliance with global environmental regulations seamlessly.
-        </li>
-        <li>
-          Educating businesses about the importance of sustainability and empowering them to make informed decisions.
-        </li>
-        <li>
-          Innovating with cutting-edge tools that make logistics more efficient and eco-friendly.
-        </li>
-      </ul>
-    </div>
-    
-  </div>
-</section>
-
-
-
-      {/* FAQ Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center text-green-700">Frequently Asked Questions</h2>
-          <div className="mt-10 space-y-8">
-            <div>
-              <h3 className="text-xl font-semibold text-green-700">What is Pure Prakruti?</h3>
+            <div className="bg-white shadow-md rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-green-700">Interactive Dashboard</h3>
               <p className="mt-2 text-gray-600">
-                Pure Prakruti is a platform that helps businesses in the logistics industry reduce their carbon emissions 
-                and comply with global environmental standards.
+                A user-friendly dashboard to track progress and implement sustainable logistics strategies.
               </p>
             </div>
-            <div>
-              <h3 className="text-xl font-semibold text-green-700">How does emission tracking work?</h3>
+            <div className="bg-white shadow-md rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-green-700">Data-Driven Insights</h3>
               <p className="mt-2 text-gray-600">
-                Our platform uses advanced algorithms and real-time data to monitor and measure your carbon emissions, 
-                providing actionable insights to reduce them effectively.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-green-700">Is the platform suitable for small businesses?</h3>
-              <p className="mt-2 text-gray-600">
-                Absolutely! Pure Prakruti is designed to cater to businesses of all sizes, offering scalable solutions 
-                tailored to your needs.
+                Leverage advanced analytics to identify areas for improvement and measure your impact.
               </p>
             </div>
           </div>
         </div>
       </section>
 
+      {/* FAQ Section */}
+<section className="py-16 bg-white ml-4">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-green-700">Frequently Asked Questions</h2>
+          <div className="mt-10 space-y-8">
+            <div>
+              <h3 className="text-xl font-semibold text-green-700">What is Pure Prakruti?</h3>
+              <p className="mt-2 text-gray-600">
+                Pure Prakruti is a cutting-edge platform designed to assist businesses in the logistics industry with reducing their carbon footprint. By leveraging advanced technologies, we help companies track emissions, improve sustainability practices, and ensure compliance with global environmental standards such as the EU's Carbon Border Adjustment Mechanism (CBAM).
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-green-700">How does emission tracking work?</h3>
+              <p className="mt-2 text-gray-600">
+                Our platform utilizes a combination of real-time data, machine learning algorithms, and sophisticated analytics to accurately track carbon emissions throughout the logistics supply chain. We provide businesses with actionable insights that can help them make informed decisions to minimize their environmental impact.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-green-700">Can Pure Prakruti help my business comply with environmental regulations?</h3>
+              <p className="mt-2 text-gray-600">
+                Yes! Pure Prakruti is designed to support businesses in achieving compliance with key environmental regulations. Whether it’s reducing emissions to meet national or international standards or preparing for upcoming regulations like CBAM, our platform equips businesses with the tools to stay ahead of environmental policies and regulations.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-green-700">Is Pure Prakruti suitable for small and medium-sized enterprises (SMEs)?</h3>
+              <p className="mt-2 text-gray-600">
+                Absolutely! Pure Prakruti offers flexible solutions that can be scaled to fit the needs of businesses of all sizes. Whether you are a small local operation or a large enterprise, our platform provides tools that are both easy to implement and cost-effective, making sustainability accessible to everyone.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-green-700">What support does Pure Prakruti provide to users?</h3>
+              <p className="mt-2 text-gray-600">
+                We offer comprehensive support to all of our users, including setup assistance, user training, and ongoing customer service. Our team is dedicated to ensuring that your experience with Pure Prakruti is seamless and that you are empowered to make data-driven decisions that positively impact your business and the environment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white ml-4">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center text-green-700">What Our Users Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
             <div className="bg-green-100 p-6 rounded-lg shadow-md">
               <p className="text-gray-700">
-                "Pure Prakruti transformed our logistics operations. We've cut emissions by 30% and are fully CBAM compliant!"
+                "Pure Prakruti has completely transformed how we approach sustainability. Thanks to their platform, we've been able to reduce our carbon emissions by over 30% and are now fully aligned with global standards. This has made a huge impact on both our operational efficiency and environmental responsibility."
               </p>
               <p className="mt-4 font-bold text-green-700">- Alex M., Logistics Manager</p>
             </div>
             <div className="bg-green-100 p-6 rounded-lg shadow-md">
               <p className="text-gray-700">
-                "An indispensable tool for businesses aiming to prioritize sustainability in logistics."
+                "As a company committed to sustainability, Pure Prakruti is an indispensable tool for us. Their user-friendly platform has made it so much easier to track emissions and ensure we’re meeting both current and future regulatory requirements. It’s a must-have for any logistics business serious about reducing its carbon footprint."
               </p>
               <p className="mt-4 font-bold text-green-700">- Priya K., Operations Head</p>
             </div>
             <div className="bg-green-100 p-6 rounded-lg shadow-md">
               <p className="text-gray-700">
-                "The dashboard and analytics are incredibly intuitive. Pure Prakruti is a game-changer for logistics sustainability."
+                "The analytics dashboard provided by Pure Prakruti is incredibly intuitive. It allows us to track and visualize our emissions in real-time, which has been a game-changer for our sustainability initiatives. Thanks to their insights, we’ve been able to set realistic goals and make meaningful improvements."
               </p>
               <p className="mt-4 font-bold text-green-700">- John D., CEO</p>
             </div>
@@ -191,28 +170,238 @@ export const AboutUs = () => {
         </div>
       </section>
 
-
-      
-
-{/* Call-to-Action Section */}
-<section className="bg-green-50 text-green-700 py-16">
-  <div className="container mx-auto px-6 text-center">
-    <h2 className="text-3xl font-bold">Join Us on the Path to Sustainability</h2>
-    <p className="mt-4 text-lg">
-      Get started with Pure Prakruti and take the first step toward a greener future.
-    </p>
-    <button className="mt-6 bg-white text-green-700 py-3 px-8 rounded-lg hover:bg-gray-200">
-    Contact Us
-    </button>
-  </div>
-</section>
-
-
-
-
+      {/* Call-to-Action Section */}
+      <section className="bg-green-50 text-green-700 py-16 ml-4">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold">Take the First Step Towards a Greener Future</h2>
+          <p className="mt-4 text-lg">
+            Join the growing number of businesses committed to reducing their carbon emissions and embracing sustainability in logistics. Let Pure Prakruti help you track, reduce, and meet global environmental standards. Together, we can create a sustainable future.
+          </p>
+          <button className="mt-6 bg-white text-green-700 py-3 px-8 rounded-lg hover:bg-gray-200">
+            Get Started Now
+          </button>
+        </div>
+      </section>
     </div>
   );
 };
+
+
+
+// import React from 'react';
+// import pure from '../resource/mobile.png';
+
+// export const AboutUs = () => {
+//   return (
+//     <div className="bg-green-50 min-h-screen w-screen">
+//       {/* Hero Section */}
+//       <header className="bg-green-600 text-white py-16">
+//         <div className="container mx-auto px-6 text-center">
+//           <h1 className="text-5xl font-extrabold">
+//             Pure Prakruti: Sustainable Logistics for a Better Tomorrow
+//           </h1>
+//           <p className="mt-6 text-xl">
+//             Reducing carbon emissions in road logistics and ensuring compliance with global environmental standards.
+//           </p>
+//           <button className="mt-8 bg-green-800 py-3 px-8 rounded-lg text-white hover:bg-green-700 transition-all">
+//             Explore Our Solutions
+//           </button>
+//         </div>
+//       </header>
+
+//       <section className="py-16 bg-white">
+//   <div className="container mx-auto px-6">
+//     {/* Title and Introduction */}
+//     <h2 className="text-4xl font-bold text-center text-green-700">About Pure Prakruti</h2>
+//     <p className="mt-6 text-lg text-gray-700 text-center">
+//       Pure Prakruti is on a mission to reshape the logistics industry by making it sustainable and environmentally responsible. 
+//       We provide cutting-edge tools and data-driven solutions to empower businesses to reduce their carbon footprint and 
+//       meet global sustainability standards.
+//     </p>
+
+//     {/* Mission, Vision, and Values */}
+//     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+//       {/* Mission */}
+//       <div className="bg-green-100 p-6 rounded-lg shadow-md">
+//         <h3 className="text-xl font-semibold text-green-700">Our Mission</h3>
+//         <p className="mt-4 text-gray-600">
+//           To transform the logistics industry by providing businesses with sustainable solutions that reduce emissions and 
+//           align with environmental regulations.
+//         </p>
+//       </div>
+//       {/* Vision */}
+//       <div className="bg-green-100 p-6 rounded-lg shadow-md">
+//         <h3 className="text-xl font-semibold text-green-700">Our Vision</h3>
+//         <p className="mt-4 text-gray-600">
+//           To lead the way in carbon reduction for logistics, creating a greener, more sustainable world for future generations.
+//         </p>
+//       </div>
+//       {/* Values */}
+//       <div className="bg-green-100 p-6 rounded-lg shadow-md">
+//         <h3 className="text-xl font-semibold text-green-700">Our Values</h3>
+//         <ul className="mt-4 list-disc pl-4 text-gray-600">
+//           <li>Sustainability: Making every action environmentally conscious.</li>
+//           <li>Innovation: Leveraging technology for impactful change.</li>
+//           <li>Integrity: Transparent and honest in all our dealings.</li>
+//           <li>Collaboration: Building partnerships to achieve common goals.</li>
+//         </ul>
+//       </div>
+//     </div>
+
+//     {/* Why Choose Us */}
+//     <div className="mt-16 text-center">
+//       <h3 className="text-3xl font-bold text-green-700">Why Choose Pure Prakruti?</h3>
+//       <p className="mt-6 text-lg text-gray-700">
+//         Pure Prakruti understands the complexities of the logistics industry. Our solutions are tailored to help businesses 
+//         reduce emissions, optimize operations, and achieve compliance with global environmental standards.
+//       </p>
+//     </div>
+//     <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+//       <div className="bg-green-50 p-6 rounded-lg shadow-md">
+//         <h4 className="text-lg font-semibold text-green-700">Emission Tracking</h4>
+//         <p className="mt-2 text-gray-600">
+//           Monitor and measure carbon emissions in real-time, enabling actionable insights for reduction.
+//         </p>
+//       </div>
+//       <div className="bg-green-50 p-6 rounded-lg shadow-md">
+//         <h4 className="text-lg font-semibold text-green-700">Custom Solutions</h4>
+//         <p className="mt-2 text-gray-600">
+//           Tailored recommendations to optimize logistics operations and reduce environmental impact.
+//         </p>
+//       </div>
+//       <div className="bg-green-50 p-6 rounded-lg shadow-md">
+//         <h4 className="text-lg font-semibold text-green-700">CBAM Compliance</h4>
+//         <p className="mt-2 text-gray-600">
+//           Ensure compliance with the EU Carbon Border Adjustment Mechanism and other global standards.
+//         </p>
+//       </div>
+//       <div className="bg-green-50 p-6 rounded-lg shadow-md">
+//               <h3 className="text-xl font-semibold text-green-700">Environmental Awareness</h3>
+//               <p className="mt-2 text-gray-600">
+//                 Educational resources to help your team understand the environmental impact of road logistics.
+//               </p>
+//             </div>
+//       <div className="bg-green-50 p-6 rounded-lg shadow-md">
+//         <h4 className="text-xl font-semibold text-green-700">Educational Resources</h4>
+//         <p className="mt-2 text-gray-600">
+//           Equip your team with knowledge about sustainable practices and their impact.
+//         </p>
+//       </div>
+//       <div className="bg-green-50 p-6 rounded-lg shadow-md">
+//         <h4 className="text-lg font-semibold text-green-700">Advanced Analytics</h4>
+//         <p className="mt-2 text-gray-600">
+//           Use data-driven insights to identify inefficiencies and maximize sustainability efforts.
+//         </p>
+//       </div>
+//     </div>
+
+//     {/* Our Goals */}
+//     <div className="mt-16">
+//       <h3 className="text-3xl font-bold text-center text-green-700">Our Goals</h3>
+//       <p className="mt-6 text-lg text-gray-700 text-center">
+//         Pure Prakruti is committed to:
+//       </p>
+//       <ul className="mt-8 space-y-4 list-disc pl-8 text-gray-600">
+//         <li>
+//           Reducing carbon emissions in the road logistics industry by 30% by 2030.
+//         </li>
+//         <li>
+//           Helping businesses achieve compliance with global environmental regulations seamlessly.
+//         </li>
+//         <li>
+//           Educating businesses about the importance of sustainability and empowering them to make informed decisions.
+//         </li>
+//         <li>
+//           Innovating with cutting-edge tools that make logistics more efficient and eco-friendly.
+//         </li>
+//       </ul>
+//     </div>
+    
+//   </div>
+// </section>
+
+
+
+//       {/* FAQ Section */}
+//       <section className="py-16 bg-white">
+//         <div className="container mx-auto px-6">
+//           <h2 className="text-3xl font-bold text-center text-green-700">Frequently Asked Questions</h2>
+//           <div className="mt-10 space-y-8">
+//             <div>
+//               <h3 className="text-xl font-semibold text-green-700">What is Pure Prakruti?</h3>
+//               <p className="mt-2 text-gray-600">
+//                 Pure Prakruti is a platform that helps businesses in the logistics industry reduce their carbon emissions 
+//                 and comply with global environmental standards.
+//               </p>
+//             </div>
+//             <div>
+//               <h3 className="text-xl font-semibold text-green-700">How does emission tracking work?</h3>
+//               <p className="mt-2 text-gray-600">
+//                 Our platform uses advanced algorithms and real-time data to monitor and measure your carbon emissions, 
+//                 providing actionable insights to reduce them effectively.
+//               </p>
+//             </div>
+//             <div>
+//               <h3 className="text-xl font-semibold text-green-700">Is the platform suitable for small businesses?</h3>
+//               <p className="mt-2 text-gray-600">
+//                 Absolutely! Pure Prakruti is designed to cater to businesses of all sizes, offering scalable solutions 
+//                 tailored to your needs.
+//               </p>
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+
+
+//       {/* Testimonials Section */}
+//       <section className="py-16 bg-white">
+//         <div className="container mx-auto px-6">
+//           <h2 className="text-3xl font-bold text-center text-green-700">What Our Users Say</h2>
+//           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+//             <div className="bg-green-100 p-6 rounded-lg shadow-md">
+//               <p className="text-gray-700">
+//                 "Pure Prakruti transformed our logistics operations. We've cut emissions by 30% and are fully CBAM compliant!"
+//               </p>
+//               <p className="mt-4 font-bold text-green-700">- Alex M., Logistics Manager</p>
+//             </div>
+//             <div className="bg-green-100 p-6 rounded-lg shadow-md">
+//               <p className="text-gray-700">
+//                 "An indispensable tool for businesses aiming to prioritize sustainability in logistics."
+//               </p>
+//               <p className="mt-4 font-bold text-green-700">- Priya K., Operations Head</p>
+//             </div>
+//             <div className="bg-green-100 p-6 rounded-lg shadow-md">
+//               <p className="text-gray-700">
+//                 "The dashboard and analytics are incredibly intuitive. Pure Prakruti is a game-changer for logistics sustainability."
+//               </p>
+//               <p className="mt-4 font-bold text-green-700">- John D., CEO</p>
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+
+
+      
+
+// {/* Call-to-Action Section */}
+// <section className="bg-green-50 text-green-700 py-16">
+//   <div className="container mx-auto px-6 text-center">
+//     <h2 className="text-3xl font-bold">Join Us on the Path to Sustainability</h2>
+//     <p className="mt-4 text-lg">
+//       Get started with Pure Prakruti and take the first step toward a greener future.
+//     </p>
+//     <button className="mt-6 bg-white text-green-700 py-3 px-8 rounded-lg hover:bg-gray-200">
+//     Contact Us
+//     </button>
+//   </div>
+// </section>
+
+
+
+
+//     </div>
+//   );
+// };
 
 
 
