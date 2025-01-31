@@ -42,7 +42,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={isLoggedIn ? <Home1 /> : <Home />} />
         <Route path="/product" element={<Product />} />
-        <Route path="/about" element={<AboutUs />} />
+        {/* <Route path="/about" element={<AboutUs />} /> */}
         <Route path="/service" element={<Service />} />
         <Route path="/booking" element={<Booking />} />
         <Route path="/ContactUs" element={<ContactUs />} />
@@ -57,11 +57,11 @@ const App = () => {
       <Footer />
 
       {/* Example of a simple login button that triggers the handleLogin function */}
-      {!isLoggedIn && (
+      {/* {!isLoggedIn && (
         <div>
           <button onClick={() => handleLogin("someUserId")}>Log In</button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
