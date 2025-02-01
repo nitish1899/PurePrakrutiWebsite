@@ -58,7 +58,7 @@ export const Footer = () => {
           <p className="text-sm mb-2">Email: <a href="mailto:siddharth@tsil.net.in" className="hover:underline">siddharth@tsil.net.in</a>
           </p>
           <p className="text-sm">
-            Corporate Office: 609, Tower II, Pearls Omaxe, Netaji Subash Place, Pitampura, New Delhi - 110034. Delhi, INDIA.
+            Corporate Office: 609, Tower II, Pearls Omaxe, Netaji Subhash Place, Pitampura, New Delhi - 110034. Delhi, INDIA.
           </p>
           <div className="flex mt-4 space-x-4 text-white">
             <a href="#" className="hover:text-blue-500">
