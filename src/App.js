@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import { Navbar } from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
-import { Home1 } from "./pages/Home1";
+import { Home1 } from "./pages/Home1"; 
 import { Booking } from "./pages/Booking";
 import { ContactUs } from "./pages/ContactUs";
 import { Product } from "./pages/Product";
@@ -17,10 +17,12 @@ import { Service } from "./pages/Service";
 import VehicleAnimation from "./components/VehicleAnimation";
 import { CarbonFootprint } from "./pages/CarbonFootprint";
 import { ViewChart } from "./pages/ViewChart";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login state
-  const media = { mobile: "768px", tab: "998px" };
+
 
   // Check if the user is logged in by looking for the user ID in cookies
   useEffect(() => {
@@ -30,19 +32,13 @@ const App = () => {
     }
   }, []);
 
-  // Function to handle login and set user ID in cookies
-  const handleLogin = (userId) => {
-    Cookies.set("userId", userId, { expires: 7 });
-    setIsLoggedIn(true);
-  };
-
   return (
     <div>
       <Navbar />
       <Routes>
-        <Route path="/" element={isLoggedIn ? <Home1 /> : <Home />} />
+        <Route path="/" element={isLoggedIn ? <Home1 /> : <Home />} /> 
         <Route path="/product" element={<Product />} />
-        {/* <Route path="/about" element={<AboutUs />} /> */}
+        <Route path="/about" element={<AboutUs />} />
         <Route path="/service" element={<Service />} />
         <Route path="/booking" element={<Booking />} />
         <Route path="/ContactUs" element={<ContactUs />} />
@@ -53,15 +49,10 @@ const App = () => {
         <Route path="/VehicleAnimation" element={<VehicleAnimation />} />
         <Route path="/CarbonFootprint" element={<CarbonFootprint />} />
         <Route path="/ViewChart" element={<ViewChart />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Signup" element={<Signup />} />
       </Routes>
       <Footer />
-
-      {/* Example of a simple login button that triggers the handleLogin function */}
-      {/* {!isLoggedIn && (
-        <div>
-          <button onClick={() => handleLogin("someUserId")}>Log In</button>
-        </div>
-      )} */}
     </div>
   );
 };
