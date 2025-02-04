@@ -27,7 +27,7 @@ export const ContactUs = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://192.168.1.5:4500/api/query", 
+      const response = await axios.post("https://pureprakruti.com/api/query", 
       {
         fullName:`${firstName} ${lastName}`,
         email,
@@ -81,12 +81,11 @@ export const ContactUs = () => {
         </p>
       </div>
 
-      {/* Form Section */}
-      <div className="max-w-4xl mx-auto mt-6 bg-white p-6 rounded-lg shadow-md flex flex-wrap mb-6 ">
-        {/* Form Fields */}
+      <div className="max-w-4xl mx-auto mt-6 bg-white p-6 rounded-lg shadow-md flex flex-wrap md:flex-nowrap mb-6 overflow-hidden">
+        {/* ✅ Form Section */}
         <div className="w-full md:w-2/3 pr-2">
           <form className="grid grid-cols-2 gap-4">
-            <div>
+          <div>
               <label className="block text-gray-700 font-semibold">First Name*</label>
               <input 
                 type="text"
@@ -143,34 +142,31 @@ export const ContactUs = () => {
                 required={true}
                 />  
             </div>
-             {/* ✅ FIXED Submit Button */}
-             <button 
-                className="bg-green-600 text-white text-sm px-4 py-2 rounded-lg mt-2 hover:bg-green-900 w-16"
-                onClick={handleOnSubmit}
-              >
-                Send
-              </button>
 
+            {/* ✅ Fixed Submit Button */}
+            <button 
+              className="bg-green-600 text-white text-sm px-4 py-2 rounded-lg mt-2 hover:bg-green-900 w-16"
+              onClick={handleOnSubmit}
+            >
+              Send
+            </button>
           </form>
         </div>
 
-        {/* Image Section */}
-        <div className="w-full md:w-1/3 mt-10 md:mt-0 bg-black bg-opacity-10">
-            <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28911.023034541106!2d77.22371!3d28.6333333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd7fc38a8187%3A0x7abb73aa8c418882!2sParivahan%20Vings%20(KAL)%20Private%20Limited!5e0!3m2!1sen!2sin!4v1690137192828!5m2!1sen!2sin"
-                  width="100%"
-                  height="240"
-                  allowFullScreen
-                  loading="lazy"
-                  title="Transport Wings (Cal) Pvt. Ltd. Set"
-            >
-          </iframe>
-
+        {/* ✅ Fixed Image Section (Size remains fixed) */}
+        <div className="w-full md:w-1/3 mt-10 md:mt-0 bg-black bg-opacity-10 h-[240px] flex-shrink-0 flex-grow-0">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28911.023034541106!2d77.22371!3d28.6333333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd7fc38a8187%3A0x7abb73aa8c418882!2sParivahan%20Vings%20(KAL)%20Private%20Limited!5e0!3m2!1sen!2sin!4v1690137192828!5m2!1sen!2sin"
+            width="100%"
+            height="100%"
+            allowFullScreen
+            loading="lazy"
+            title="Transport Wings (Cal) Pvt. Ltd. Set"
+            className="h-full"
+          ></iframe>
         </div>
-
-        {/* </div> */}
       </div>
-    
+      
     </div>
      
     <div className="pb-5"> 

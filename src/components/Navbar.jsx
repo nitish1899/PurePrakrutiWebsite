@@ -34,7 +34,7 @@ export const Navbar = () => {
     <div className="h-22 sticky top-0 z-50 w-screen shadow-md bg-green-800">
       <div className="flex items-center justify-between max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-3 lg:gap-12">
         <Link to="/" className="flex items-center">
-          <img src={pure} alt="Pure Prakrti" className="h-full max-h-16 w-auto"/>
+          <img src={pure} alt="Pure Prakrti" className="h-full max-h-16 w-auto" />
         </Link>
         <div className="hidden md:flex gap-4 lg:gap-6 text-sm sm:text-base items-center font-semibold text-white ml-auto">
           <Link to="/" className="hover:text-cyan-500 transition duration-300">Home</Link>
@@ -72,7 +72,7 @@ export const Navbar = () => {
           <IoReorderThreeOutline size={30} />
         </button>
       </div>
-      
+
       {isMobileMenuOpen && (
         <div className="md:hidden bg-green-800 text-white flex flex-col items-center py-4 gap-3">
           <Link to="/" className="py-2 w-full text-center hover:text-cyan-500" onClick={() => setMobileMenuOpen(false)}>Home</Link>
