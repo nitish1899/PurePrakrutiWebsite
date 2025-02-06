@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 function SocialMedia() {
   const [posts, setPosts] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -17,7 +18,8 @@ function SocialMedia() {
     }
     fetchData();
     console.log(posts);
-  }, [])
+  }, []);
+
   return (
     <div>
       <h1>Social Media Posts</h1>
@@ -33,7 +35,7 @@ function SocialMedia() {
   )
 }
 
-export default SocialMedia
+export default SocialMedia;
 
 
 // import React, { useEffect } from 'react'
