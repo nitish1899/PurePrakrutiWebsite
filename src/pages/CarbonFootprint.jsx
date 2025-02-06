@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import pure from '../resource/co2.png';
+import { AuthContext } from "../AuthContext";
 
 export const CarbonFootprint = () => {
+     const authContext = useContext(AuthContext);
+     const user = authContext?.user;
+     const userId = user?.userId;
+
     const [formData, setFormData] = useState({
         VechileNumber: '',
         SourcePincode: '',
@@ -32,7 +37,7 @@ export const CarbonFootprint = () => {
 
         try {
             // Check for `userId` in cookies
-            const userId = Cookies.get('userId');
+            // const userId = Cookies.get('userId');
 
             // Check if the carbon footprint API has already been called
             const isFirstTime = localStorage.getItem('isFirstTime') !== 'false'; // By default, it's true
@@ -40,7 +45,7 @@ export const CarbonFootprint = () => {
             if (!userId) {
                 if (isFirstTime) {
                     // First-time submission without userId
-                    const { data } = await axios.post('http://localhost:4500/api/vehicle/getCabonFootPrints', formData);
+                    const { data } = await axios.post('http://localhost:5000/api/vehicle/getCabonFootPrints', formData);
 
                     // Save the response and show a signup message for subsequent interactions
                     setResponse(data);
@@ -54,7 +59,7 @@ export const CarbonFootprint = () => {
                 }
             } else {
                 // User is logged in, fetch carbon emission details
-                const { data } = await axios.post('http://localhost:4500/api/vehicle/findCO2Emission', {
+                const { data } = await axios.post('http://localhost:5000/api/vehicle/findCO2Emission', {
                     ...formData,
                     userId,
                 });

@@ -1,34 +1,23 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { IoReorderThreeOutline } from 'react-icons/io5';
-import Cookies from 'js-cookie';
 import pure from '../resource/pureprakrti.png';
+import { AuthContext } from "../AuthContext";
 
 export const Navbar = () => {
+  const authContext = useContext(AuthContext);
+  const user = authContext?.user;
+  const userId = user?.userId;
+  const userName = user?.userName;
+
+  console.log("user",user)
+  console.log("user id mila", userId)
+  console.log("user Name mila", userName)
+  
+  const logout = authContext?.logout;
   const navigate = useNavigate();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [userProfile, setUserProfile] = useState(null);
-
-  useEffect(() => {
-    const userId = Cookies.get('userId');
-    const userName = Cookies.get('userName');
-    const mobileNumber = Cookies.get('mobileNumber');
-
-    if (userId && userName && mobileNumber) {
-      setUserProfile({ userName });
-    }
-  }, []);
-
-  const handleLogout = () => {
-    Cookies.remove('userId');
-    Cookies.remove('userName');
-    Cookies.remove('mobileNumber');
-
-    window.location.reload();
-    setUserProfile(null);
-  };
 
   return (
     <div className="h-22 sticky top-0 z-50 w-screen shadow-md bg-green-800">
@@ -38,9 +27,8 @@ export const Navbar = () => {
         </Link>
         <div className="hidden md:flex gap-4 lg:gap-6 text-sm sm:text-base items-center font-semibold text-white ml-auto">
           <Link to="/" className="hover:text-cyan-500 transition duration-300">Home</Link>
-          {/* <Link to="/about" className="hover:text-cyan-500 transition duration-300">About</Link> */}
           <Link to="/CarbonFootprint" className="hover:text-cyan-500 transition duration-300">Carbon Footprints</Link>
-          {userProfile && <Link to="/ViewChart" className="hover:text-cyan-500 transition duration-300">View Chart</Link>}
+          {user && <Link to="/ViewChart" className="hover:text-cyan-500 transition duration-300">View Chart</Link>}
           <Link to="/contactUs" className="hover:text-cyan-500 transition duration-300">Contact Us</Link>
         </div>
 
@@ -49,10 +37,10 @@ export const Navbar = () => {
             <FaPhoneAlt />
             <span>Call +91-96618 29944</span>
           </a>
-          {userProfile ? (
+          {user ? (
             <div className="flex items-center gap-4">
-              <span className="text-sm font-semibold">Welcome, {userProfile.userName}</span>
-              <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700" onClick={handleLogout}>
+              <span className="text-sm font-semibold">Welcome, {user.userName}</span>
+              <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700" onClick={logout}>
                 Logout
               </button>
             </div>
@@ -72,40 +60,104 @@ export const Navbar = () => {
           <IoReorderThreeOutline size={30} />
         </button>
       </div>
-      
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-green-800 text-white flex flex-col items-center py-4 gap-3">
-          <Link to="/" className="py-2 w-full text-center hover:text-cyan-500" onClick={() => setMobileMenuOpen(false)}>Home</Link>
-          {/* <Link to="/about" className="py-2 w-full text-center hover:text-cyan-500" onClick={() => setMobileMenuOpen(false)}>About</Link> */}
-          <Link to="/CarbonFootprint" className="py-2 w-full text-center hover:text-cyan-500" onClick={() => setMobileMenuOpen(false)}>Carbon Footprints</Link>
-          {userProfile && <Link to="/ViewChart" className="py-2 w-full text-center hover:text-cyan-500" onClick={() => setMobileMenuOpen(false)}>View Chart</Link>}
-          <Link to="/contactUs" className="py-2 w-full text-center hover:text-cyan-500" onClick={() => setMobileMenuOpen(false)}>Contact Us</Link>
-          <a href="tel:+91-9661829944" className="flex items-center text-lg hover:text-cyan-500 gap-2">
-            <FaPhoneAlt />
-            <span>Call +91-96618 29944</span>
-          </a>
-          {userProfile ? (
-            <div className="flex flex-col items-center gap-4">
-              <span className="text-sm font-semibold">Welcome, {userProfile.userName}</span>
-              <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700" onClick={handleLogout}>
-                Logout
-              </button>
-            </div>
-          ) : (
-            <>
-              <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700" onClick={() => { setMobileMenuOpen(false); navigate('/signup'); }}>
-                Sign Up
-              </button>
-              <button className="bg-white text-green-500 px-4 py-2 rounded-lg hover:bg-gray-200" onClick={() => { setMobileMenuOpen(false); navigate('/login'); }}>
-                Log In
-              </button>
-            </>
-          )}
-        </div>
-      )}
     </div>
   );
 };
+
+
+// import React, { useState, useEffect, useContext } from 'react';
+// import { Link, useNavigate } from 'react-router-dom';
+// import { FaPhoneAlt } from 'react-icons/fa';
+// import { IoReorderThreeOutline } from 'react-icons/io5';
+// import pure from '../resource/pureprakrti.png';
+// import { AuthContext } from "../AuthContext";
+
+// export const Navbar = () => {
+
+//   const { user, logout } = useContext(AuthContext);
+//   const navigate = useNavigate();
+//   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+//   const userId = user?.userId; 
+//   console.log(userId)
+
+
+//   return (
+//     <div className="h-22 sticky top-0 z-50 w-screen shadow-md bg-green-800">
+//       <div className="flex items-center justify-between max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-3 lg:gap-12">
+//         <Link to="/" className="flex items-center">
+//           <img src={pure} alt="Pure Prakrti" className="h-full max-h-16 w-auto"/>
+//         </Link>
+//         <div className="hidden md:flex gap-4 lg:gap-6 text-sm sm:text-base items-center font-semibold text-white ml-auto">
+//           <Link to="/" className="hover:text-cyan-500 transition duration-300">Home</Link>
+//           {/* <Link to="/about" className="hover:text-cyan-500 transition duration-300">About</Link> */}
+//           <Link to="/CarbonFootprint" className="hover:text-cyan-500 transition duration-300">Carbon Footprints</Link>
+//           {userProfile && <Link to="/ViewChart" className="hover:text-cyan-500 transition duration-300">View Chart</Link>}
+//           <Link to="/contactUs" className="hover:text-cyan-500 transition duration-300">Contact Us</Link>
+//         </div>
+
+//         <div className="hidden md:flex items-center gap-4 text-white">
+//           <a href="tel:+91-9661829944" className="flex items-center text-base sm:text-lg hover:text-cyan-500 transition gap-2">
+//             <FaPhoneAlt />
+//             <span>Call +91-96618 29944</span>
+//           </a>
+//           {userProfile ? (
+//             <div className="flex items-center gap-4">
+//               <span className="text-sm font-semibold">Welcome, {userProfile.userName}</span>
+//               <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700" onClick={logout}>
+//                 Logout
+//               </button>
+//             </div>
+//           ) : (
+//             <>
+//               <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700" onClick={() => navigate('/signup')}>
+//                 Sign Up
+//               </button>
+//               <button className="bg-white text-green-500 px-4 py-2 rounded-lg hover:bg-gray-200" onClick={() => navigate('/login')}>
+//                 Log In
+//               </button>
+//             </>
+//           )}
+//         </div>
+
+//         <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}>
+//           <IoReorderThreeOutline size={30} />
+//         </button>
+//       </div>
+      
+//       {isMobileMenuOpen && (
+//         <div className="md:hidden bg-green-800 text-white flex flex-col items-center py-4 gap-3">
+//           <Link to="/" className="py-2 w-full text-center hover:text-cyan-500" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+//           {/* <Link to="/about" className="py-2 w-full text-center hover:text-cyan-500" onClick={() => setMobileMenuOpen(false)}>About</Link> */}
+//           <Link to="/CarbonFootprint" className="py-2 w-full text-center hover:text-cyan-500" onClick={() => setMobileMenuOpen(false)}>Carbon Footprints</Link>
+//           {userProfile && <Link to="/ViewChart" className="py-2 w-full text-center hover:text-cyan-500" onClick={() => setMobileMenuOpen(false)}>View Chart</Link>}
+//           <Link to="/contactUs" className="py-2 w-full text-center hover:text-cyan-500" onClick={() => setMobileMenuOpen(false)}>Contact Us</Link>
+//           <a href="tel:+91-9661829944" className="flex items-center text-lg hover:text-cyan-500 gap-2">
+//             <FaPhoneAlt />
+//             <span>Call +91-96618 29944</span>
+//           </a>
+//           {userProfile ? (
+//             <div className="flex flex-col items-center gap-4">
+//               <span className="text-sm font-semibold">Welcome, {userProfile.userName}</span>
+//               <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700" onClick={logout}>
+//                 Logout
+//               </button>
+//             </div>
+//           ) : (
+//             <>
+//               <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700" onClick={() => { setMobileMenuOpen(false); navigate('/signup'); }}>
+//                 Sign Up
+//               </button>
+//               <button className="bg-white text-green-500 px-4 py-2 rounded-lg hover:bg-gray-200" onClick={() => { setMobileMenuOpen(false); navigate('/login'); }}>
+//                 Log In
+//               </button>
+//             </>
+//           )}
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
 
 
 
