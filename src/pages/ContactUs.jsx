@@ -27,7 +27,7 @@ export const ContactUs = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://pureprakruti.com/api/query", 
+      const response = await axios.post("http://192.168.1.8:4500/api/query", 
       {
         fullName:`${firstName} ${lastName}`,
         email,

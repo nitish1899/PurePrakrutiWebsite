@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import pure from "../resource/co2.png";
 import { Chart } from "react-google-charts";
 
-export const ViewChart = () => {
+export const Dashboard = () => {
     const [vehicleNumber, setVehicleNumber] = useState("");
     const [formData, setFormData] = useState({
         fuelType: "",

@@ -54,7 +54,7 @@ export const CarbonFootprint = () => {
             if (!userId) {
                 if (isFirstTime) {
                     // First-time submission without userId
-                    const { data } = await axios.post('http://localhost:5000/api/vehicle/getCabonFootPrints', formData);
+                    const { data } = await axios.post('http://192.168.1.8:4500/api/vehicle/getCabonFootPrints', formData);
 
                     // Save the response and show a signup message for subsequent interactions
                     setResponse(data);
@@ -68,7 +68,7 @@ export const CarbonFootprint = () => {
                 }
             } else {
                 // User is logged in, fetch carbon emission details
-                const { data } = await axios.post('http://localhost:5000/api/vehicle/findCO2Emission', {
+                const { data } = await axios.post('http://192.168.1.8:4500/api/vehicle/findCO2Emission', {
                     ...formData,
                     userId,
                 });

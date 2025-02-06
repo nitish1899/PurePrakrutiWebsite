@@ -2,15 +2,15 @@ import React, { useContext } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AuthProvider, AuthContext } from "./AuthContext";
 import Signup from "./components/Signup";
-import Login from "./components/Login";
-import Dashboard from "./components/Dashboard";
+import Login from "./pages/Login";
+import Dashboard2 from "./components/Dashboard2";
 import GoogleAuthCallback from "./components/GoogleAuthCallback";
 import { Home } from "./pages/Home";
 import { Home1 } from "./pages/Home1";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { CarbonFootprint } from "./pages/CarbonFootprint";
-import { ViewChart } from "./pages/ViewChart";
+import { Dashboard } from "./pages/Dashboard";
 import { ContactUs } from "./pages/ContactUs";
 
 function App() {
@@ -30,13 +30,13 @@ const MainRoutes = () => {
 
   return (
     <Routes>
-      <Route path="/" element={isLoggedIn ? <Home1 /> : <Home />} />
+      <Route path="/" element={<Home />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/auth/google/callback" element={<GoogleAuthCallback />} />
       <Route path="/CarbonFootprint" element={<CarbonFootprint />} />
-      <Route path="/ViewChart" element={<ViewChart />} />
+      <Route path="/Dashboard2" element={<Dashboard2 />} />
       <Route path="/ContactUs" element={<ContactUs />} />
     </Routes>
   );
@@ -59,7 +59,7 @@ export default App;
 // import { Footer } from "./components/Footer";
 
 // import { CarbonFootprint } from "./pages/CarbonFootprint";
-// import { ViewChart } from "./pages/ViewChart";
+// import { Dashboard } from "./pages/Dashboard";
 // import { ContactUs } from "./pages/ContactUs";
 
 // function App() {
@@ -84,7 +84,7 @@ export default App;
 //           <Route path="/dashboard" element={<Dashboard />} />
 //           <Route path="/auth/google/callback" element={<GoogleAuthCallback />} />
 //           <Route path="/CarbonFootprint" element={<CarbonFootprint />} />
-//           <Route path="/ViewChart" element={<ViewChart />} />
+//           <Route path="/Dashboard" element={<Dashboard />} />
 //           <Route path="/ContactUs" element={<ContactUs />} />
 //         </Routes>
 //       </AuthProvider>
@@ -110,7 +110,7 @@ export default App;
 // import { Footer } from "./components/Footer";
 
 // import { CarbonFootprint } from "./pages/CarbonFootprint";
-// import { ViewChart } from "./pages/ViewChart";
+// import { Dashboard } from "./pages/Dashboard";
 // import { ContactUs } from "./pages/ContactUs";
 
 // function App() {
@@ -137,7 +137,7 @@ export default App;
 //           <Route path="/auth/google/callback" element={<GoogleAuthCallback />} />
 
 //           <Route path="/CarbonFootprint" element={<CarbonFootprint />} />
-//           <Route path="/ViewChart" element={<ViewChart />} />
+//           <Route path="/Dashboard" element={<Dashboard />} />
 //           <Route path="/ContactUs" element={<ContactUs />} />
 
 //         </Routes>
@@ -169,7 +169,7 @@ export default App;
 // import { Service } from "./pages/Service";
 // import VehicleAnimation from "./components/VehicleAnimation";
 // import { CarbonFootprint } from "./pages/CarbonFootprint";
-// import { ViewChart } from "./pages/ViewChart";
+// import { Dashboard } from "./pages/Dashboard";
 // import Login from "./pages/Login";
 // import Signup from "./pages/Signup";
 
@@ -201,7 +201,7 @@ export default App;
 //         <Route path="/MissionVision" element={<MissionVision />} />
 //         <Route path="/VehicleAnimation" element={<VehicleAnimation />} />
 //         <Route path="/CarbonFootprint" element={<CarbonFootprint />} />
-//         <Route path="/ViewChart" element={<ViewChart />} />
+//         <Route path="/Dashboard" element={<Dashboard />} />
 //         <Route path="/Login" element={<Login />} />
 //         <Route path="/Signup" element={<Signup />} />
 //       </Routes>

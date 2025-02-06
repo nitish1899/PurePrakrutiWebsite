@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import forest from "../resource/forest.png";
 import google from "../resource/google.png";
+import { AuthContext } from "./../AuthContext";
+
 
 export default function Signup() {
+  const { signup, googleLogin } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     userName: "",
     mobileNumber: "",
@@ -25,44 +28,52 @@ export default function Signup() {
     return /^[6-9]\d{9}$/.test(number);
   };
 
-  // Handle signup
   const handleSignup = async (e) => {
     e.preventDefault();
-    setError("");
-
-    // Validate inputs
-    if (!formData.userName || !formData.mobileNumber || !formData.pin || !formData.confirmPin) {
-      setError("All fields are required.");
-      return;
-    }
-    if (!isValidPhoneNumber(formData.mobileNumber)) {
-      setError("Enter a valid 10-digit phone number.");
-      return;
-    }
-    if (formData.pin.length < 4) {
-      setError("PIN must be at least 4 digits.");
-      return;
-    }
-    if (formData.pin !== formData.confirmPin) {
-      setError("PIN and Confirm PIN must match.");
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const response = await axios.post("http://localhost:4500/api/auth/signup", {
-        userName: formData.userName,
-        mobileNumber: formData.mobileNumber,
-        pin: formData.pin,
-      });
-      // alert("Signup Successful! Redirecting to login...");
-      navigate("/login"); 
-    } catch (err) {
-      setError("Signup failed. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    console.log("Submitting signup form:", userData); 
+    await signup(formData);
   };
+
+  // Handle signup
+  // const handleSignup = async (e) => {
+  //   e.preventDefault();
+  //   setError("");
+
+  //   // Validate inputs
+  //   if (!formData.userName || !formData.mobileNumber || !formData.pin || !formData.confirmPin) {
+  //     setError("All fields are required.");
+  //     return;
+  //   }
+  //   if (!isValidPhoneNumber(formData.mobileNumber)) {
+  //     setError("Enter a valid 10-digit phone number.");
+  //     return;
+  //   }
+  //   if (formData.pin.length < 4) {
+  //     setError("PIN must be at least 4 digits.");
+  //     return;
+  //   }
+  //   if (formData.pin !== formData.confirmPin) {
+  //     setError("PIN and Confirm PIN must match.");
+  //     return;
+  //   }
+
+  //   setLoading(true);
+  //   try {
+  //     const response = await axios.post("http://localhost:4500/api/auth/signup", {
+  //       userName: formData.userName,
+  //       mobileNumber: formData.mobileNumber,
+  //       pin: formData.pin,
+  //     });
+  //     // alert("Signup Successful! Redirecting to login...");
+  //     navigate("/login"); 
+  //   } catch (err) {
+  //     setError("Signup failed. Please try again.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+
 
   return (
     <div className="w-screen flex items-center justify-center min-h-screen bg-green-100">
@@ -129,7 +140,7 @@ export default function Signup() {
             {loading ? "Signing Up..." : "Sign Up"}
           </button>
 
-          <button className="w-full flex items-center justify-center bg-blue-600 text-white py-2 rounded-md mt-3 hover:bg-blue-700 transition">
+          <button onClick={googleLogin} className="w-full flex items-center justify-center bg-blue-600 text-white py-2 rounded-md mt-3 hover:bg-blue-700 transition">
             <img src={google} alt="Google" className="w-5 h-5 mr-2" />
             Sign Up with Google
           </button>
