@@ -3,15 +3,16 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AuthProvider, AuthContext } from "./AuthContext";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
-import Dashboard from "./components/Dashboard";
+
 import GoogleAuthCallback from "./components/GoogleAuthCallback";
 import { Home } from "./pages/Home";
-import { Home1 } from "./pages/Home1";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { CarbonFootprint } from "./pages/CarbonFootprint";
 import { ViewChart } from "./pages/ViewChart";
 import { ContactUs } from "./pages/ContactUs";
+import { UserDashBoard } from "./pages/UserDashBoard";
+
 
 function App() {
   return (
@@ -30,13 +31,13 @@ const MainRoutes = () => {
 
   return (
     <Routes>
-      <Route path="/" element={isLoggedIn ? <Home1 /> : <Home />} />
+      <Route path="/" element={isLoggedIn ? <Home /> : <Home />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/auth/google/callback" element={<GoogleAuthCallback />} />
       <Route path="/CarbonFootprint" element={<CarbonFootprint />} />
       <Route path="/ViewChart" element={<ViewChart />} />
+      <Route path="/UserDashBoard" element={<UserDashBoard />} />
       <Route path="/ContactUs" element={<ContactUs />} />
     </Routes>
   );

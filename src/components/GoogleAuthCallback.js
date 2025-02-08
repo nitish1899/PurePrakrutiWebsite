@@ -35,7 +35,7 @@ const GoogleAuthCallback = () => {
     handleGoogleLogin();
   }, [navigate, setUser, setIsLoggedIn]);
 
-  return <h2>Authenticating...</h2>;
+  return ;
 };
 
 export default GoogleAuthCallback;

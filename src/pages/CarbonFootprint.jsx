@@ -202,7 +202,7 @@ export const CarbonFootprint = () => {
 
     return (
         <div
-            className=" items-center justify-center bg-cover bg-center bg-opacity-40"
+            className="w-screen items-center justify-center bg-cover bg-center bg-opacity-40"
             style={{
                 backgroundImage: `url(${pure})`,
             }}
