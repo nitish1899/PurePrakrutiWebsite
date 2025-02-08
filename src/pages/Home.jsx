@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext, } from 'react';
 import { Chart } from 'react-google-charts';
 import axios from 'axios';
 import rajesh from '../resource/rajesh.jpg';
@@ -9,6 +8,9 @@ import result3 from '../resource/Screenshot3.png';
 import result4 from '../resource/Screenshot4.png';
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthContext";
+import { jwtDecode } from "jwt-decode";
 
 const faqs = [
   {
@@ -35,6 +37,9 @@ const faqs = [
 
 
 export const Home = () => {
+  const [carbonFootprintData, setCarbonFootprintData] = useState([]);
+  const { setUser, setIsLoggedIn, user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [openIndex, setOpenIndex] = useState(null);
 
