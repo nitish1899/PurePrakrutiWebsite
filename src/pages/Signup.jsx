@@ -30,7 +30,7 @@ export default function Signup() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    console.log("Submitting signup form:", userData); 
+    console.log("Submitting signup form:", formData); 
     await signup(formData);
   };
 

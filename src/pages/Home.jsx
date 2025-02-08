@@ -48,18 +48,18 @@ export const Home = () => {
   };
 
 
-  useEffect(() => {
-    const handleFocus = () => {
-      console.log("Page focused, reloading...");
-      window.location.reload();
-    };
+  // useEffect(() => {
+  //   const handleFocus = () => {
+  //     console.log("Page focused, reloading...");
+  //     window.location.reload();
+  //   };
 
-    window.addEventListener("focus", handleFocus);
+  //   window.addEventListener("focus", handleFocus);
 
-    return () => {
-      window.removeEventListener("focus", handleFocus);
-    };
-  }, [user]);
+  //   return () => {
+  //     window.removeEventListener("focus", handleFocus);
+  //   };
+  // }, [user]);
 
   // const authContext = useContext(AuthContext);
   // const user = authContext?.user;

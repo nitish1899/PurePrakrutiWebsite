@@ -27,7 +27,7 @@ export const ContactUs = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://192.168.1.8:4500/api/query", 
+      const response = await axios.post("http://localhost:4500/api/query", 
       {
         fullName:`${firstName} ${lastName}`,
         email,
@@ -177,15 +177,15 @@ export const ContactUs = () => {
         <div className="max-w-lg mx-auto bg-green-200 p-6 mt-4 rounded-lg shadow-md">
           <div className="flex items-center gap-2 text-gray-800">
             <img src={mail} alt="mail" className="h-full max-h-4 w-auto" />
-             <span>siddharthtsil.net.in</span>
+             <span>siddharth@tsil.net.in</span>
           </div>
           <div className="flex items-center gap-2 text-gray-800">
             <img src={mail} alt="mail" className="h-full max-h-4 w-auto" />
-            <span>teamtsil.net.in</span>
+            <span>team@tsil.net.in</span>
           </div>
           <div className="flex items-start gap-2 text-gray-800">
           <img src={mapPin} alt="mapPin" className="h-full max-h-4 w-auto" />
-             <span>Corporate Office: 609, Tower II, Pearls Omaxe, Netaji Subash Place, Pitampura, New Delhi - 110034. Delhi, INDIA.</span>
+             <span>Corporate Office: 609, Tower II, Pearls Omaxe, Netaji Subhash Place, Pitampura, New Delhi - 110034. Delhi, INDIA.</span>
           </div>
           <div className="flex items-center gap-2 text-gray-800">
             <img src={phoneImg} alt="phone" className="h-full max-h-4 w-auto" />

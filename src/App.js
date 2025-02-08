@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AuthProvider, AuthContext } from "./AuthContext";
-import Signup from "./components/Signup";
+import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Dashboard2 from "./components/Dashboard2";
 import GoogleAuthCallback from "./components/GoogleAuthCallback";
@@ -35,7 +35,7 @@ const MainRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/auth/google/callback" element={<GoogleAuthCallback />} />
-      <Route path="/CarbonFootprint" element={<CarbonFootprint />} />
+      <Route path="/carbonfootprint" element={<CarbonFootprint />} />
       <Route path="/Dashboard2" element={<Dashboard2 />} />
       <Route path="/ContactUs" element={<ContactUs />} />
     </Routes>

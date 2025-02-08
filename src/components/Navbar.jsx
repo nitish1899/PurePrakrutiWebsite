@@ -1,4 +1,4 @@
-import React, { useState, useContext,useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { IoReorderThreeOutline } from 'react-icons/io5';
@@ -10,11 +10,6 @@ export const Navbar = () => {
   const user = authContext?.user;
   const userId = user?.userId;
   const userName = user?.userName;
-
-  // console.log("user", user)
-  // console.log("user id mila", userId)
-  // console.log("user Name mila", userName)
-
 
   useEffect(() => {
     const handleFocus = () => {
@@ -41,8 +36,8 @@ export const Navbar = () => {
         </Link>
         <div className="hidden md:flex gap-4 lg:gap-6 text-sm sm:text-base items-center font-semibold text-white ml-auto">
           <Link to="/" className="hover:text-cyan-500 transition duration-300">Home</Link>
-          <Link to="/CarbonFootprint" className="hover:text-cyan-500 transition duration-300">Carbon Footprints</Link>
-          {user && <Link to="/Dashboard" className="hover:text-cyan-500 transition duration-300">Dashboard</Link>}
+          <Link to="/carbonfootprint" className="hover:text-cyan-500 transition duration-300">Carbon Footprints</Link>
+          {user && <Link to="/dashboard" className="hover:text-cyan-500 transition duration-300">Dashboard</Link>}
           <Link to="/contactUs" className="hover:text-cyan-500 transition duration-300">Contact Us</Link>
         </div>
 
@@ -53,7 +48,7 @@ export const Navbar = () => {
           </a>
           {user ? (
             <div className="flex items-center gap-4">
-              <span className="text-sm font-semibold">Welcome, {user.userName}</span>
+              <span className="text-sm font-semibold">{user.userName}</span>
               <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700" onClick={logout}>
                 Logout
               </button>

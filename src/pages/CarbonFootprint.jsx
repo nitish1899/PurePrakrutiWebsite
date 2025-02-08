@@ -11,9 +11,9 @@ import html2pdf from "html2pdf.js";
 
 
 export const CarbonFootprint = () => {
-     const authContext = useContext(AuthContext);
-     const user = authContext?.user;
-     const userId = user?.userId;
+    const authContext = useContext(AuthContext);
+    const user = authContext?.user;
+    const userId = user?.userId;
 
     const [formData, setFormData] = useState({
         VechileNumber: '',
@@ -26,6 +26,7 @@ export const CarbonFootprint = () => {
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
     const [showSignupMessage, setShowSignupMessage] = useState(false); // For signup prompt
+    const [pdfUrl, setPdfUrl] = useState('');
 
     const userName = Cookies.get("userName"); // Get the userId from cookies
 
@@ -54,7 +55,7 @@ export const CarbonFootprint = () => {
             if (!userId) {
                 if (isFirstTime) {
                     // First-time submission without userId
-                    const { data } = await axios.post('http://192.168.1.8:4500/api/vehicle/getCabonFootPrints', formData);
+                    const { data } = await axios.post('http://localhost:4500/api/vehicle/getCabonFootPrints', formData);
 
                     // Save the response and show a signup message for subsequent interactions
                     setResponse(data);
@@ -68,11 +69,17 @@ export const CarbonFootprint = () => {
                 }
             } else {
                 // User is logged in, fetch carbon emission details
-                const { data } = await axios.post('http://192.168.1.8:4500/api/vehicle/findCO2Emission', {
+                const { data } = await axios.post('http://localhost:4500/api/vehicle/findCO2Emission', {
                     ...formData,
                     userId,
                 });
                 setResponse(data);
+
+                const pdfUrlData = await axios.post(`http://localhost:4500/api/vehicle/generateCarbonFootprintPDF`, {
+                    id: data.id,
+                    userId,
+                });
+                setPdfUrl(pdfUrlData.data.url);
             }
         } catch (err) {
             setError(err.response?.data?.message || 'An error occurred while fetching data.');
@@ -92,112 +99,151 @@ export const CarbonFootprint = () => {
     };
 
 
-    const pdfTemplate = `<div
-        style="font-family: 'Playfair Display', serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f8f9fa; margin: 0;">
+    // const pdfTemplate = `<div
+    //     style="font-family: 'Playfair Display', serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f8f9fa; margin: 0;">
 
-        <div
-            style="border: 10px solid #D4AF37; padding: 30px; width: 700px; text-align: center; background-color: #fff; box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); position: relative; background: url('https://www.toptal.com/designers/subtlepatterns/patterns/symphony.png');">
+    //     <div
+    //         style="border: 10px solid #D4AF37; padding: 30px; width: 700px; text-align: center; background-color: #fff; box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); position: relative; background: url('https://www.toptal.com/designers/subtlepatterns/patterns/symphony.png');">
 
-            <!-- Logos Section -->
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                <div style="display: flex; flex-direction: column;">
-                    <a target="blank" href="https://dpiit.gov.in">
-                        <img src="/DPIIT.png" alt="DPIIT Logo" style="height: 20px; margin-bottom: 5px;">
-                    </a>
-                    <a href="https://www.startupindia.gov.in">
-                        <img src="StartupIndia.png"
-                            alt="Startup India Logo" style="height: 20px; margin-bottom: 5px;">
-                    </a>
-                </div>
-                <div>
-                    <img src="/pureprukriti.png" alt="TSIL Logo"
-                        style="height: 60px; width: 60px; margin-right: 5px; margin-bottom: 5px;">
-                </div>
-            </div>
+    //         <!-- Logos Section -->
+    //         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+    //             <div style="display: flex; flex-direction: column;">
+    //                 <a target="blank" href="https://dpiit.gov.in">
+    //                     <img src="/DPIIT.png" alt="DPIIT Logo" style="height: 20px; margin-bottom: 5px;">
+    //                 </a>
+    //                 <a href="https://www.startupindia.gov.in">
+    //                     <img src="StartupIndia.png"
+    //                         alt="Startup India Logo" style="height: 20px; margin-bottom: 5px;">
+    //                 </a>
+    //             </div>
+    //             <div>
+    //                 <img src="/pureprukriti.png" alt="TSIL Logo"
+    //                     style="height: 60px; width: 60px; margin-right: 5px; margin-bottom: 5px;">
+    //             </div>
+    //         </div>
 
-            <!-- Certificate Header -->
-            <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-                <p style="margin: 0; font-size: 16px;">Certificate Number: <span
-                        style="font-weight: bold; color: #2c3e50;" id="certificateNumber">${response && response.certificateNumber}</span></p>
-                <p style="margin: 0; font-size: 16px;">Date: <span style="font-weight: bold; color: #2c3e50;"
-                        id="date">${response && response.certificateIssueDate}</span></p>
-            </div>
+    //         <!-- Certificate Header -->
+    //         <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+    //             <p style="margin: 0; font-size: 16px;">Certificate Number: <span
+    //                     style="font-weight: bold; color: #2c3e50;" id="certificateNumber">${response && response.certificateNumber}</span></p>
+    //             <p style="margin: 0; font-size: 16px;">Date: <span style="font-weight: bold; color: #2c3e50;"
+    //                     id="date">${response && response.certificateIssueDate}</span></p>
+    //         </div>
 
-            <h1
-                style="font-size: 36px; margin-bottom: 20px; font-style: italic; font-family: 'Magnolia Script', cursive; color: #D4AF37;">
-                Certificate of CO2 Emission</h1>
+    //         <h1
+    //             style="font-size: 36px; margin-bottom: 20px; font-style: italic; font-family: 'Magnolia Script', cursive; color: #D4AF37;">
+    //             Certificate of CO2 Emission</h1>
 
-            <p style="font-size: 18px; margin: 10px 0;">This is to certify that the vehicle owned/hired by</p>
-            <p style="font-size: 18px; margin: 10px 0; font-weight: bold; color: #2c3e50;" id="vehicleOwner">${userName ? userName : "Name"}</p>
-            <p style="font-size: 18px; margin: 10px 0;">with vehicle number</p>
-            <p style="font-size: 18px; margin: 10px 0; font-weight: bold; color: #2c3e50;" id="vehicleNumber">${response && response.vehicleNumber}</p>
-            <p style="font-size: 18px; margin: 10px 0;">has emitted</p>
-            <p style="font-size: 18px; margin: 10px 0;"><span style="font-weight: bold; color: #2c3e50;"
-                    id="co2Emission">${response && (response.co2Emission / 1000).toFixed(1)}</span> unit CO2</p>
+    //         <p style="font-size: 18px; margin: 10px 0;">This is to certify that the vehicle owned/hired by</p>
+    //         <p style="font-size: 18px; margin: 10px 0; font-weight: bold; color: #2c3e50;" id="vehicleOwner">${userName ? userName : "Name"}</p>
+    //         <p style="font-size: 18px; margin: 10px 0;">with vehicle number</p>
+    //         <p style="font-size: 18px; margin: 10px 0; font-weight: bold; color: #2c3e50;" id="vehicleNumber">${response && response.vehicleNumber}</p>
+    //         <p style="font-size: 18px; margin: 10px 0;">has emitted</p>
+    //         <p style="font-size: 18px; margin: 10px 0;"><span style="font-weight: bold; color: #2c3e50;"
+    //                 id="co2Emission">${response && (response.co2Emission / 1000).toFixed(1)}</span> unit CO2</p>
 
-            <!-- Signature Section -->
-            <div style="margin-top: 40px; text-align: right; ">
-                <img src="/signature.png" alt="Signature"
-                    style="height: 50px; width: 150px; margin-left: 480px;">
-                <p>Authorized Signature</p>
-            </div>
+    //         <!-- Signature Section -->
+    //         <div style="margin-top: 40px; text-align: right; ">
+    //             <img src="/signature.png" alt="Signature"
+    //                 style="height: 50px; width: 150px; margin-left: 480px;">
+    //             <p>Authorized Signature</p>
+    //         </div>
 
-            <!-- Issuer Section -->
-            <div style="margin-top: 40px; text-align: center;">
-                <p>Issued by:</p>
-                <p style="font-weight: bold; color: #2c3e50;">Transvue Solution India Pvt. Ltd.</p>
-            </div>
+    //         <!-- Issuer Section -->
+    //         <div style="margin-top: 40px; text-align: center;">
+    //             <p>Issued by:</p>
+    //             <p style="font-weight: bold; color: #2c3e50;">Transvue Solution India Pvt. Ltd.</p>
+    //         </div>
 
-            <!-- Info Section -->
-            <div style="display: flex;">
-                <div style="text-align: left; margin: 5px 0; font-size: 7px;">
-                    <p>* The above result is based on user input.</p>
-                    <p>* Additional details are based on US/UK research.</p>
-                </div>
-                <div style="margin-left: auto; margin-right: 1px;">
-                    <p>Time: <span style="font-weight: bold; color: #2c3e50;" id="time">${new Date().toLocaleTimeString()}</span></p>
-                </div>
-            </div>
-        </div>
-    </div>
+    //         <!-- Info Section -->
+    //         <div style="display: flex;">
+    //             <div style="text-align: left; margin: 5px 0; font-size: 7px;">
+    //                 <p>* The above result is based on user input.</p>
+    //                 <p>* Additional details are based on US/UK research.</p>
+    //             </div>
+    //             <div style="margin-left: auto; margin-right: 1px;">
+    //                 <p>Time: <span style="font-weight: bold; color: #2c3e50;" id="time">${new Date().toLocaleTimeString()}</span></p>
+    //             </div>
+    //         </div>
+    //     </div>
+    // </div>
 
-    <script>
-        window.onload = function () {
-            const now = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const dateStr = now.toLocaleDateString('en-US', options);
-            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-            document.getElementById('date').innerText = dateStr;
-            document.getElementById('time').innerText = timeStr;
-        };
-    </script>`;
+    // <script>
+    //     window.onload = function () {
+    //         const now = new Date();
+    //         const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    //         const dateStr = now.toLocaleDateString('en-US', options);
+    //         const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+    //         document.getElementById('date').innerText = dateStr;
+    //         document.getElementById('time').innerText = timeStr;
+    //     };
+    // </script>`;
 
-    // Function to Download PDF
-    const downloadPDF = (blob) => {
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = "certificate.pdf";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
+    // // Function to Download PDF
+    // const downloadPDF = (blob) => {
+    //     const link = document.createElement("a");
+    //     link.href = URL.createObjectURL(blob);
+    //     link.download = "certificate.pdf";
+    //     document.body.appendChild(link);
+    //     link.click();
+    //     document.body.removeChild(link);
+    // };
 
-    const generatePDF = () => {
+    // const uploadPDFToS3 = (blob) => {
+    //     const formData = new FormData();
+    //     formData.append('file', blob, 'certificate.pdf');
 
-        const options = {
-            margin: 10,
-            filename: 'certificate.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2, useCORS: true, allowTaint: true, imageTimeout: 0 },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        };
+    //     fetch('http://localhost:4500/upload', { // Replace with your API URL
+    //         method: 'POST',
+    //         body: formData,
+    //     })
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             console.log('Upload Success:', data);
+    //             alert('PDF uploaded successfully: ' + data.url);
+    //         })
+    //         .catch(error => {
+    //             console.error('Upload Error:', error);
+    //             alert('Failed to upload PDF');
+    //         });
+    // };
 
-        html2pdf().set(options).from(pdfTemplate).toPdf().output('blob').then(blob => {
-            // Trigger download
-            downloadPDF(blob);
-            // Upload to AWS S3
-            // uploadPDFToS3(blob);
-        });
+    // const generatePDF = () => {
+
+    //     const options = {
+    //         margin: 10,
+    //         filename: 'certificate.pdf',
+    //         image: { type: 'jpeg', quality: 0.98 },
+    //         html2canvas: { scale: 2, useCORS: true, allowTaint: true, imageTimeout: 0 },
+    //         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    //     };
+
+    //     html2pdf().set(options).from(pdfTemplate).toPdf().output('blob').then(blob => {
+    //         // Trigger download
+    //         downloadPDF(blob);
+    //         // Upload to AWS S3
+    //         uploadPDFToS3(blob);
+    //     });
+    // };
+
+    const handleDownload = async () => {
+        try {
+            const response = await fetch(pdfUrl);
+            const blob = await response.blob();
+            console.log('pdf data is', blob)
+            const url = window.URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'certificate.pdf'; // Ensure a proper filename
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            window.URL.revokeObjectURL(url); // Cleanup
+        } catch (error) {
+            console.error('Error downloading PDF:', error);
+        }
     };
 
     return (
@@ -267,13 +313,34 @@ export const CarbonFootprint = () => {
                                     </div>
 
                                     {/* Download Button */}
-                                    {userName && <button
+                                    {/* {userId && pdfUrl && <button
                                         onClick={generatePDF}
                                         className="mt-4 flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-900 focus:ring-2 focus:ring-blue-300"
                                     >
                                         Download
                                         <img src={downloadIcon} alt="Download Icon" className="w-5 h-5" />
-                                    </button>}
+                                    </button>} */}
+
+                                    {/* {userId && pdfUrl && (
+                                        <a
+                                            href={pdfUrl}
+                                            download="certificate.pdf" target="_blank" rel="noopener noreferrer"
+                                            className="mt-4 flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-900 focus:ring-2 focus:ring-blue-300 w-32"
+                                        >
+                                            Download
+                                            <img src={downloadIcon} alt="Download Icon" className="w-5 h-5" />
+                                        </a>
+                                    )} */}
+
+                                    {userId && pdfUrl && (
+                                        <button
+                                            onClick={handleDownload}
+                                            className="mt-4 flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-900 focus:ring-2 focus:ring-blue-300 w-32"
+                                        >
+                                            Download
+                                            <img src={downloadIcon} alt="Download Icon" className="w-5 h-5" />
+                                        </button>
+                                    )}
 
                                 </div>
                             </div>
