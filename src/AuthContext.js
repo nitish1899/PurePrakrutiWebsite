@@ -13,12 +13,15 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!token);
   const [userId, setUserId] = useState(localStorage.getItem("userId") || "");
   const [userName, setUserName] = useState(localStorage.getItem("userName") || "");
+  const [baseUsername, setbaseUserName] = useState(localStorage.getItem("baseUsername") || "");
+
 
   // Logout function
   const logout = useCallback(() => {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     localStorage.removeItem("userName");
+    localStorage.removeItem("baseUsername");
 
     setUser(null);
     setToken("");
@@ -65,15 +68,16 @@ export const AuthProvider = ({ children }) => {
         try {
           localStorage.setItem("token", token);
           const decodedUser = jwtDecode(token);
-          
+
           setUser(decodedUser);
           setIsLoggedIn(true);
           setUserId(decodedUser.userId);
           setUserName(decodedUser.userName);
+          setbaseUserName(decodedUser.baseUsername);
           // console.log('user login success')
 
           window.history.replaceState(null, null, window.location.pathname);
-      
+
           window.location.reload();
         } catch (error) {
           console.error("Google login error:", error);
@@ -100,7 +104,7 @@ export const AuthProvider = ({ children }) => {
   // Login function
   const login = async (credentials) => {
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", credentials);
+      const res = await axios.post("http://localhost:4500/api/auth/login", credentials);
       const { token } = res.data;
 
       if (!token) throw new Error("No token received");
@@ -111,12 +115,16 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("token", token);
       localStorage.setItem("userId", decodedUser.userId);
       localStorage.setItem("userName", decodedUser.userName);
+      localStorage.setItem("baseUsername", decodedUser.baseUsername);
+
 
       setToken(token);
       setUser(decodedUser);
       setIsLoggedIn(true);
       setUserId(decodedUser.userId);
       setUserName(decodedUser.userName);
+      setUserName(decodedUser.baseUsername);
+
 
       navigate("/");
     } catch (error) {
@@ -143,6 +151,7 @@ export const AuthProvider = ({ children }) => {
         login,
         userId,
         userName,
+        baseUsername,
       }}
     >
       {children}

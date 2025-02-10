@@ -9,6 +9,26 @@ import downloadIcon from '../resource/Vector.png';
 import { AiOutlineClose } from "react-icons/ai";
 import html2pdf from "html2pdf.js";
 
+export const handleDownload = async (pdfUrl) => {
+    try {
+        const response = await fetch(pdfUrl);
+        const blob = await response.blob();
+        // console.log('pdf data is', blob)
+        const url = window.URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'certificate.pdf'; // Ensure a proper filename
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        window.URL.revokeObjectURL(url); // Cleanup
+    } catch (error) {
+        console.error('Error downloading PDF:', error);
+    }
+};
+
 
 export const CarbonFootprint = () => {
     const authContext = useContext(AuthContext);
@@ -226,25 +246,6 @@ export const CarbonFootprint = () => {
     //     });
     // };
 
-    const handleDownload = async () => {
-        try {
-            const response = await fetch(pdfUrl);
-            const blob = await response.blob();
-            console.log('pdf data is', blob)
-            const url = window.URL.createObjectURL(blob);
-
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'certificate.pdf'; // Ensure a proper filename
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-
-            window.URL.revokeObjectURL(url); // Cleanup
-        } catch (error) {
-            console.error('Error downloading PDF:', error);
-        }
-    };
 
     return (
         <div
@@ -334,7 +335,7 @@ export const CarbonFootprint = () => {
 
                                     {userId && pdfUrl && (
                                         <button
-                                            onClick={handleDownload}
+                                            onClick={() => handleDownload(pdfUrl)}
                                             className="mt-4 flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-900 focus:ring-2 focus:ring-blue-300 w-32"
                                         >
                                             Download

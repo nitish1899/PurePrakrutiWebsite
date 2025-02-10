@@ -10,6 +10,7 @@ export const Navbar = () => {
   const user = authContext?.user;
   // const userId = user?.userId;
   const userName = user?.userName;
+  const baseUsername = user?.baseUsername;
   const logout = authContext?.logout;
   const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ export const Navbar = () => {
   return (
     <div className="sticky top-0 z-50 w-screen shadow-md bg-green-800">
       <div className="flex items-center justify-between max-w-[1240px] mx-auto px-4 py-3">
-        
+
         {/* Logo */}
         <Link to="/" className="flex items-center">
           <img src={pure} alt="Pure Prakrti" className="h-12 w-auto" />
@@ -31,7 +32,7 @@ export const Navbar = () => {
         <div className="hidden md:flex gap-4 lg:gap-6 text-sm sm:text-base items-center font-semibold text-white ml-auto">
           <Link to="/" className="hover:text-cyan-500 transition duration-300">Home</Link>
           <Link to="/carbonfootprint" className="hover:text-cyan-500 transition duration-300">Carbon Footprints</Link>
-          {user && <Link to="/dashboard" className="hover:text-cyan-500 transition duration-300">Dashboard</Link>}
+          {user && <Link to="/UserDashBoard" className="hover:text-cyan-500 transition duration-300">Dashboard</Link>}
           <Link to="/contactUs" className="hover:text-cyan-500 transition duration-300">Contact Us</Link>
         </div>
 
@@ -109,20 +110,20 @@ export const Navbar = () => {
               className="h-16 w-16 rounded-full"
             />
             <div>
-              <h3 className="text-xl font-semibold">{userName}</h3>
-           
+              <h3 className="text-xl font-semibold">{userName ? userName : baseUsername}</h3>
+
             </div>
           </div>
           <div className="mt-4 flex justify-between gap-2">
-          <button
-  className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 w-full"
-  onClick={() => {
-    logout(); // Call logout
-    toggleModal(); // Close the modal after logout
-  }}
->
-  Logout
-</button>
+            <button
+              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 w-full"
+              onClick={() => {
+                logout(); // Call logout
+                toggleModal(); // Close the modal after logout
+              }}
+            >
+              Logout
+            </button>
             <button className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 w-full" onClick={toggleModal}>
               Close
             </button>
