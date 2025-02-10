@@ -92,7 +92,7 @@ export const AuthProvider = ({ children }) => {
   // Signup function
   const signup = async (userData) => {
     try {
-      const res = await axios.post("http://localhost:4500/api/auth/signup", userData);
+      const res = await axios.post("https://pureprakruti.com/api/auth/signup", userData);
       alert(res.data.message);
       navigate("/login");
     } catch (error) {
@@ -104,7 +104,7 @@ export const AuthProvider = ({ children }) => {
   // Login function
   const login = async (credentials) => {
     try {
-      const res = await axios.post("http://localhost:4500/api/auth/login", credentials);
+      const res = await axios.post("https://pureprakruti.com/api/auth/login", credentials);
       const { token } = res.data;
 
       if (!token) throw new Error("No token received");
@@ -135,7 +135,7 @@ export const AuthProvider = ({ children }) => {
 
   // Google Login function
   const googleLogin = () => {
-    window.location.href = "http://localhost:4500/auth/google";
+    window.location.href = "https://pureprakruti.com/auth/google";
   };
 
   return (
