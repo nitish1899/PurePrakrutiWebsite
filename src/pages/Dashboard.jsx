@@ -20,7 +20,7 @@ export const Dashboard = () => {
     const fetchFuelAndDates = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`https://pureprakruti.com/api/vehicle/fueltype/${vehicleNumber}`);
+            const response = await fetch(`http://localhost:4500/api/vehicle/fueltype/${vehicleNumber}`);
             const data = await response.json();
             if (data?.fuelType) {
                 setFormData({ fuelType: data.fuelType, startDate: "", endDate: "" });
@@ -75,7 +75,7 @@ export const Dashboard = () => {
         }
         try {
             const response = await fetch(
-                `https://pureprakruti.com/api/vehicle/carbon-footprint?vehicleNumber=${vehicleNumber}&startDate=${formData.startDate}&endDate=${formData.endDate}`
+                `http://localhost:4500/api/vehicle/carbon-footprint?vehicleNumber=${vehicleNumber}&startDate=${formData.startDate}&endDate=${formData.endDate}`
             );
             const data = await response.json();
             if (data?.carbonFootprintData?.length > 0) {

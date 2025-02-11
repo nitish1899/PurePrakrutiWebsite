@@ -23,7 +23,7 @@ export default function Login() {
   //   setError("");
   
   //   try {
-  //     const response = await axios.post("https://pureprakruti.com/api/auth/login", formData);
+  //     const response = await axios.post("http://localhost:4500/api/auth/login", formData);
   
   //     if (response.data.status === "success") {
   //       const { userId, userName, mobileNumber } = response.data.data; // Extract data correctly

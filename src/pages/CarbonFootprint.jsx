@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 // import Cookies from 'js-cookie';
 // import pure from '../resource/co2.png';
@@ -47,9 +47,17 @@ export const CarbonFootprint = () => {
     const [error, setError] = useState(null);
     const [showSignupMessage, setShowSignupMessage] = useState(false); // For signup prompt
     const [pdfUrl, setPdfUrl] = useState('');
+    const [isFirstTime, setIsFirstTime] = useState(true);
+
 
     const userName = Cookies.get("userName"); // Get the userId from cookies
 
+    useEffect(() => {
+        const isFirstTimeData = localStorage.getItem('isFirstTime');
+        console.log('isFirstTimeData', isFirstTimeData);
+        setIsFirstTime(isFirstTimeData === "false" ? false : true);
+        setShowSignupMessage(!userId && isFirstTimeData === "false" ? true : false);
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -70,32 +78,36 @@ export const CarbonFootprint = () => {
             // const userId = Cookies.get('userId');
 
             // Check if the carbon footprint API has already been called
-            const isFirstTime = localStorage.getItem('isFirstTime') !== 'false'; // By default, it's true
+            // const isFirstTime = localStorage.getItem('isFirstTime') !== 'false'; // By default, it's true
 
             if (!userId) {
                 if (isFirstTime) {
                     // First-time submission without userId
-                    const { data } = await axios.post('https://pureprakruti.com/api/vehicle/getCabonFootPrints', formData);
+                    const { data } = await axios.post('http://localhost:4500/api/vehicle/getCabonFootPrints', formData);
 
                     // Save the response and show a signup message for subsequent interactions
                     setResponse(data);
                     setShowSignupMessage(true);
 
                     // Set the flag to false after the first submission
-                    // localStorage.setItem('isFirstTime', 'false');
+                    localStorage.setItem('isFirstTime', 'false');
+
+                    const isFirstTimeData = localStorage.getItem('isFirstTime');
+                    // console.log('isFirstTimeData', isFirstTimeData);
+                    setIsFirstTime(isFirstTimeData === "false" ? false : true);
                 } else {
                     // If it's not the first time, prompt the user to sign up or log in
                     setShowSignupMessage(true);
                 }
             } else {
                 // User is logged in, fetch carbon emission details
-                const { data } = await axios.post('https://pureprakruti.com/api/vehicle/findCO2Emission', {
+                const { data } = await axios.post('http://localhost:4500/api/vehicle/findCO2Emission', {
                     ...formData,
                     userId,
                 });
                 setResponse(data);
 
-                const pdfUrlData = await axios.post(`https://pureprakruti.com/api/vehicle/generateCarbonFootprintPDF`, {
+                const pdfUrlData = await axios.post(`http://localhost:4500/api/vehicle/generateCarbonFootprintPDF`, {
                     id: data.id,
                     userId,
                 });
@@ -213,7 +225,7 @@ export const CarbonFootprint = () => {
     //     const formData = new FormData();
     //     formData.append('file', blob, 'certificate.pdf');
 
-    //     fetch('https://pureprakruti.com/upload', { // Replace with your API URL
+    //     fetch('http://localhost:4500/upload', { // Replace with your API URL
     //         method: 'POST',
     //         body: formData,
     //     })
@@ -282,10 +294,14 @@ export const CarbonFootprint = () => {
                         <div className="pt-4 justify-center">
                             <button
                                 type="submit"
-                                className="px-6 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-900 focus:ring-2 focus:ring-blue-300"
+                                className="px-6 py-2 bg-green-500 text-white rounded-lg shadow 
+                                            hover:bg-green-900 focus:ring-2 focus:ring-blue-300 
+                                            disabled:bg-gray-400 disabled:cursor-not-allowed"
+                                disabled={!isFirstTime && !userId}
                             >
                                 Get Result
                             </button>
+
                         </div>
                     </form>
 
@@ -345,14 +361,12 @@ export const CarbonFootprint = () => {
 
                                 </div>
                             </div>
-
-
                         )
                     }
 
                     {showSignupMessage && (
                         <p className="mt-4 text-center text-blue-600">
-                            Please <a href="/" className="underline font-medium">sign up</a> to continue tracking your carbon emissions.
+                            Please <a href="/signup" className="underline font-medium">sign up</a> to continue tracking your carbon emissions.
                         </p>
                     )}
                 </div>

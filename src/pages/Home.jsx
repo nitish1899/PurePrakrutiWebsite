@@ -326,17 +326,21 @@ export const Home = () => {
           <h2 className="text-lg text-gray-600">Explore the</h2>
           <h1 className="text-3xl font-bold text-green-700">Pure Prakruti App</h1>
           <p className="text-gray-700">Track with Ease</p>
-          <button className="mt-4 bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700">
+          <button
+            onClick={() => window.location.href = "https://play.google.com/store/apps/details?id=com.nitishco2e.twico2ecalculator"}
+            className="mt-4 bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700"
+          >
             Download Now
           </button>
         </div>
+
 
         {/* Carousel Section */}
         <div className="relative flex flex-col items-center justify-center p-6">
           {/* Previous Button */}
           <button
             onClick={prevSlide}
-            className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 p-2 bg-white rounded-full shadow-md"
+            className="absolute left-2 md:left-72 top-1/2 -translate-y-1/2 p-2 bg-gray-400 rounded-full shadow-md"
           >
             <ChevronLeft className="w-6 h-6 text-gray-700" />
           </button>
@@ -368,7 +372,7 @@ export const Home = () => {
           {/* Next Button */}
           <button
             onClick={nextSlide}
-            className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 p-2 bg-white rounded-full shadow-md"
+            className="absolute right-2 md:right-72 top-1/2 -translate-y-1/2 p-2 bg-gray-400 rounded-full shadow-md"
           >
             <ChevronRight className="w-6 h-6 text-gray-700" />
           </button>

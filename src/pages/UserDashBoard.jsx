@@ -38,9 +38,9 @@ export const UserDashBoard = () => {
     const fetchCarbonFootprintData = async () => {
       try {
         const [response1, response2, routeResponse] = await Promise.all([
-          fetch(`https://pureprakruti.com/api/vehicle/carbonfootprint/dieselvehicles/${userId}`),
-          fetch(`https://pureprakruti.com/api/vehicle/carbonfootprint/dieselvehicles1/${userId}`),
-          fetch(`https://pureprakruti.com/api/vehicle/routewiseEmission/${userId}`)
+          fetch(`http://localhost:4500/api/vehicle/carbonfootprint/dieselvehicles/${userId}`),
+          fetch(`http://localhost:4500/api/vehicle/carbonfootprint/dieselvehicles1/${userId}`),
+          fetch(`http://localhost:4500/api/vehicle/routewiseEmission/${userId}`)
         ]);
 
         if (!response1.ok) throw new Error("Failed to fetch dieselvehicles data");
@@ -112,7 +112,7 @@ export const UserDashBoard = () => {
     try {
       // Construct the URL for the API call with selected filters
       const response = await fetch(
-        `https://pureprakruti.com/api/vehicle/carbonfootprintbyfueltype?fuelType=${selectedFuel}&${selectedDateRange}=true`
+        `http://localhost:4500/api/vehicle/carbonfootprintbyfueltype?fuelType=${selectedFuel}&${selectedDateRange}=true`
       );
 
       if (!response.ok) {
@@ -168,10 +168,13 @@ export const UserDashBoard = () => {
   const totalVehicles = dieselVehiclesData1.length;
   const totalEmission = dieselVehiclesData.reduce((total, item) => total + parseFloat(item.carbonFootprint), 0);
 
-  const data = [
-    ["Route", "Emission"],
-    ...routeWiseEmissionData.map((route) => [route.route, route.totalEmission]),
-  ];
+  const data = routeWiseEmissionData.length > 0
+    ? [
+      ["Route", "Emission"],
+      ...routeWiseEmissionData.map((route) => [route.route, route.totalEmission]),
+    ]
+    : [["Route", "Emission"], ["No Data", 1]]; // Placeholder data to avoid errors
+
 
   const options = {
     title: "Route-wise Emissions",
@@ -240,17 +243,19 @@ export const UserDashBoard = () => {
             {/* Container for Cards */}
             <div className="flex flex-wrap justify-center md:justify-between gap-6">
               {/* Top Emitting Vehicle */}
-              {topEmittingVehicle && (
-                <motion.div
-                  className="bg-gradient-to-r from-green-600 to-green-800 p-6 rounded-xl shadow-lg w-full sm:w-[300px] text-center border border-green-500 hover:shadow-xl transform transition duration-300 hover:scale-105"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                  <div className="font-bold text-lg text-white">{`🚛 GreenLine Freight: ${topEmittingVehicle.vehicleNumber}`}</div>
-                  <h1 className="text-gray-200 text-sm mt-2">Top Emitting Vehicle</h1>
-                </motion.div>
-              )}
+              {/* {topEmittingVehicle && (
+                
+              )} */}
+
+              <motion.div
+                className="bg-gradient-to-r from-green-600 to-green-800 p-6 rounded-xl shadow-lg w-full sm:w-[300px] text-center border border-green-500 hover:shadow-xl transform transition duration-300 hover:scale-105"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <div className="font-bold text-lg text-white">{`🚛 GreenLine Freight: ${topEmittingVehicle?.vehicleNumber ?? 'N/A'}`}</div>
+                <h1 className="text-gray-200 text-sm mt-2">Top Emitting Vehicle</h1>
+              </motion.div>
 
               {/* Total Vehicles */}
               <motion.div
@@ -286,43 +291,58 @@ export const UserDashBoard = () => {
         >
           <div className="bg-white p-4 rounded-lg shadow-md w-full">
             <h2 className="text-lg font-bold text-white mb-2 bg-green-600 text-center">Emission Over Time</h2>
-            <div className="w-full min-h-[300px]">
-              <Chart
-                chartType="ColumnChart"
-                width="100%"
-                height="300px"
-                options={{
-                  colors: ["#004d0d"], // Green color
-                  legend: { position: "none" }, // Hide legend if not needed
-                  chartArea: { width: "80%" }, // Adjust chart area
-                }}
-                data={[
-                  ["Date", "CO2 Emission (kg)"],
-                  ...filteredData.map((item) => [item.date, item.carbonFootprint]),
-                ]}
-              />
-              <div className="flex justify-center space-x-2 mb-2">
+            <div className="w-full min-h-[300px] flex flex-col items-center justify-center">
+              {filteredData.length > 0 ? (
+                <Chart
+                  chartType="ColumnChart"
+                  width="100%"
+                  height="300px"
+                  options={{
+                    colors: ["#004d0d"], // Green color
+                    legend: { position: "none" }, // Hide legend if not needed
+                    chartArea: { width: "80%" }, // Adjust chart area
+                  }}
+                  data={[
+                    ["Date", "CO2 Emission (kg)"],
+                    ...filteredData.map((item) => [
+                      item.date, // Convert string to Date object
+                      item.carbonFootprint,
+                    ]),
+                  ]}
+                />
+              ) : (
+                <p className="text-gray-500 text-lg mt-4">No data available for the selected filter.</p>
+              )}
+
+              <div className="flex justify-center space-x-2 mt-4">
                 {["All", "Week", "Month", "Year"].map((filter) => (
                   <button
                     key={filter}
                     onClick={() => setTimeFilter(filter)}
                     className={`px-4 py-2 rounded transition duration-200 ${timeFilter === filter ? "bg-green-600 text-white" : "bg-gray-300"
-                      }`}
+                      } ${filteredData.length === 0 ? "opacity-50 cursor-not-allowed" : ""}`}
+                    disabled={filteredData.length === 0} // Disable buttons if no data
                   >
                     {filter}
                   </button>
                 ))}
               </div>
-
             </div>
           </div>
 
           <div className="bg-white p-4 rounded-lg shadow-md w-full">
-            <h2 className="text-lg font-bold mb-2 text-white bg-green-600 text-center">Route-wise Emissions</h2>
-            <div className="w-full min-h-[300px]">
-              <Chart chartType="PieChart" width="100%" height="300px" data={data} options={options} />
+            <h2 className="text-lg font-bold mb-2 text-white bg-green-600 text-center">
+              Route-wise Emissions
+            </h2>
+            <div className="w-full min-h-[300px] flex justify-center items-center">
+              {routeWiseEmissionData.length > 0 ? (
+                <Chart chartType="PieChart" width="100%" height="300px" data={data} options={options} />
+              ) : (
+                <p className="text-gray-500 text-lg">No data available</p>
+              )}
             </div>
           </div>
+
         </motion.div>
 
         <motion.div

@@ -155,7 +155,7 @@
 //   //   }
 //   // /
 //   ///
-//   // https://pureprakruti.com/register
+//   // http://localhost:4500/register
 //   // Handle Form Submission
 
 //   //   const handleOnSubmit = async (e) => {
@@ -437,7 +437,7 @@
 // //   //   }
 // //   // /
 // //   ///
-// //   // https://pureprakruti.com/register
+// //   // http://localhost:4500/register
 // //   // Handle Form Submission
 
 // //   //   const handleOnSubmit = async (e) => {

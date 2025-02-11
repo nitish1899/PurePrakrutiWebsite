@@ -29,7 +29,7 @@ export const Navbar = () => {
         <Link to="/" className="flex items-center">
           <img src={pure} alt="Pure Prakrti" className="h-12 w-auto" />
         </Link>
-        <div className="hidden md:flex gap-4 lg:gap-6 text-sm sm:text-base items-center font-semibold text-white ml-auto">
+        <div className="hidden md:flex gap-4 lg:gap-6 text-sm sm:text-base items-center font-semibold text-white ml-auto mr-8">
           <Link to="/" className="hover:text-cyan-500 transition duration-300">Home</Link>
           <Link to="/carbonfootprint" className="hover:text-cyan-500 transition duration-300">Carbon Footprints</Link>
           {user && <Link to="/UserDashBoard" className="hover:text-cyan-500 transition duration-300">Dashboard</Link>}
@@ -37,7 +37,7 @@ export const Navbar = () => {
         </div>
 
         {/* Desktop Right Section */}
-        <div className="hidden md:flex items-center gap-4 text-white">
+        <div className="hidden md:flex items-center gap-4 text-white ">
           <a href="tel:+91-9661829944" className="flex items-center text-lg hover:text-cyan-400 transition gap-2">
             <FaPhoneAlt />
             <span>Call +91-96618 29944</span>
@@ -109,9 +109,8 @@ export const Navbar = () => {
               alt="User Logo"
               className="h-16 w-16 rounded-full"
             />
-            <div>
-              <h3 className="text-xl font-semibold">{userName ? userName : baseUsername}</h3>
-
+            <div className="max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap">
+              <h3 className="text-m font-semibold">{userName ? userName : baseUsername}</h3>
             </div>
           </div>
           <div className="mt-4 flex justify-between gap-2">
