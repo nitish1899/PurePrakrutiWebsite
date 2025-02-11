@@ -83,7 +83,7 @@ export const CarbonFootprint = () => {
             if (!userId) {
                 if (isFirstTime) {
                     // First-time submission without userId
-                    const { data } = await axios.post('http://localhost:4500/api/vehicle/getCabonFootPrints', formData);
+                    const { data } = await axios.post('https://pureprakruti.com/api/vehicle/getCabonFootPrints', formData);
 
                     // Save the response and show a signup message for subsequent interactions
                     setResponse(data);
@@ -101,13 +101,13 @@ export const CarbonFootprint = () => {
                 }
             } else {
                 // User is logged in, fetch carbon emission details
-                const { data } = await axios.post('http://localhost:4500/api/vehicle/findCO2Emission', {
+                const { data } = await axios.post('https://pureprakruti.com/api/vehicle/findCO2Emission', {
                     ...formData,
                     userId,
                 });
                 setResponse(data);
 
-                const pdfUrlData = await axios.post(`http://localhost:4500/api/vehicle/generateCarbonFootprintPDF`, {
+                const pdfUrlData = await axios.post(`https://pureprakruti.com/api/vehicle/generateCarbonFootprintPDF`, {
                     id: data.id,
                     userId,
                 });
@@ -225,7 +225,7 @@ export const CarbonFootprint = () => {
     //     const formData = new FormData();
     //     formData.append('file', blob, 'certificate.pdf');
 
-    //     fetch('http://localhost:4500/upload', { // Replace with your API URL
+    //     fetch('https://pureprakruti.com/upload', { // Replace with your API URL
     //         method: 'POST',
     //         body: formData,
     //     })

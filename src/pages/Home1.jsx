@@ -22,7 +22,7 @@
 
 //     const fetchCarbonFootprintData = async () => {
 //       try {
-//         const response = await fetch(`http://localhost:4500/api/vehicle/carbonfootprint/dieselvehicles/${userId}`);
+//         const response = await fetch(`https://pureprakruti.com/api/vehicle/carbonfootprint/dieselvehicles/${userId}`);
 //         if (!response.ok) throw new Error("Failed to fetch data");
 
 //         const data = await response.json();
@@ -153,7 +153,7 @@ export const Home1 = () => {
 //     if (userId) {
 //       const fetchCarbonFootprintData = async () => {
 //         try {
-//           const response = await fetch(`http://localhost:4500/api/vehicle/carbonfootprint/dieselvehicles/${userId}`);
+//           const response = await fetch(`https://pureprakruti.com/api/vehicle/carbonfootprint/dieselvehicles/${userId}`);
 //           const data = await response.json();
 
 //           // Check if data exists and has the required structure
