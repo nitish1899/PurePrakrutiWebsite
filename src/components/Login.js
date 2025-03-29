@@ -38,8 +38,8 @@ const Login = () => {
         } transition`}
         disabled={loading}>Login</button>
       </form>
-      <button onClick={googleLogin} className="w-full flex items-center justify-center bg-blue-600 text-white py-2 rounded-md mt-3 hover:bg-blue-700 transition"><img src={google} alt="Google" className="w-5 h-5 mr-2" />
-      Login with Google</button>
+      {/* <button onClick={googleLogin} className="w-full flex items-center justify-center bg-blue-600 text-white py-2 rounded-md mt-3 hover:bg-blue-700 transition"><img src={google} alt="Google" className="w-5 h-5 mr-2" />
+      Login with Google</button> */}
     </div>
     </div>
     </div>
