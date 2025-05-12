@@ -38,9 +38,9 @@ export const UserDashBoard = () => {
     const fetchCarbonFootprintData = async () => {
       try {
         const [response1, response2, routeResponse] = await Promise.all([
-          fetch(`https://api.pureprakruti.com/api/vehicle/carbonfootprint/dieselvehicles/${userId}`),
-          fetch(`https://api.pureprakruti.com/api/vehicle/carbonfootprint/dieselvehicles1/${userId}`),
-          fetch(`https://api.pureprakruti.com/api/vehicle/routewiseEmission/${userId}`)
+          fetch(`https://pureprakruti.com/api/vehicle/carbonfootprint/dieselvehicles/${userId}`),
+          fetch(`https://pureprakruti.com/api/vehicle/carbonfootprint/dieselvehicles1/${userId}`),
+          fetch(`https://pureprakruti.com/api/vehicle/routewiseEmission/${userId}`)
         ]);
 
         if (!response1.ok) throw new Error(`Failed to fetch dieselvehicles data ${error}`);
@@ -112,7 +112,7 @@ export const UserDashBoard = () => {
     try {
       // Construct the URL for the API call with selected filters
       const response = await fetch(
-        `https://api.pureprakruti.com/api/vehicle/carbonfootprintbyfueltype?fuelType=${selectedFuel}&${selectedDateRange}=true`
+        `https://pureprakruti.com/api/vehicle/carbonfootprintbyfueltype?fuelType=${selectedFuel}&${selectedDateRange}=true`
       );
 
       if (!response.ok) {

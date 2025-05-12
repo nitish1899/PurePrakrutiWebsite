@@ -59,7 +59,7 @@ export default function Signup() {
 
   //   setLoading(true);
   //   try {
-  //     const response = await axios.post("https://api.pureprakruti.com/api/auth/signup", {
+  //     const response = await axios.post("https://pureprakruti.com/api/auth/signup", {
   //       userName: formData.userName,
   //       mobileNumber: formData.mobileNumber,
   //       pin: formData.pin,
