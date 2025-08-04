@@ -77,14 +77,13 @@ export const CarbonFootprint = () => {
         try {
             // Check for `userId` in cookies
             // const userId = Cookies.get('userId');
-
             // Check if the carbon footprint API has already been called
             // const isFirstTime = localStorage.getItem('isFirstTime') !== 'false'; // By default, it's true
 
             if (!userId) {
                 if (isFirstTime) {
                     // First-time submission without userId
-                    const { data } = await axios.post('https://pureprakruti.com/api/vehicle/getCarbonFootPrints', formData);
+                    const { data } = await axios.post('/api/vehicle/getCarbonFootPrints', formData);
 
                     // Save the response and show a signup message for subsequent interactions
                     setResponse(data);
@@ -102,11 +101,11 @@ export const CarbonFootprint = () => {
                 }
             } else {
                 // User is logged in, fetch carbon emission details
-                const { data } = await axios.post('https://pureprakruti.com/api/vehicle/findCO2Emission', {
+                const { data } = await axios.post('https://api.pureprakruti.com/api/vehicle/findCO2Emission', {
                     ...formData,
                     userId,
                 });
-            //     // const { data } = await axios.post('https://pureprakruti.com/api/vehicle/calculateEmissionAndSave', {
+            //     // const { data } = await axios.post('https://api.pureprakruti.com/api/vehicle/calculateEmissionAndSave', {
             //     // userId,
             //     // sourcePincode: formData.SourcePincode,
             //     // destinationPincode: formData.DestinationPincode,
@@ -119,7 +118,7 @@ export const CarbonFootprint = () => {
             // });
                 setResponse(data);
 
-                const pdfUrlData = await axios.post(`https://pureprakruti.com/api/vehicle/generateCarbonFootprintPDF`, {
+                const pdfUrlData = await axios.post(`https://api.pureprakruti.com/api/vehicle/generateCarbonFootprintPDF`, {
                     id: data.id,
                     userId,
                 });
